@@ -10,31 +10,34 @@ import SwiftUI
 struct IntroView: View {
   
   var body: some View {
-    VStack(spacing: 0) {
-      
-//      Image("papertexture")
-//        .resizable()
-//        .scaledToFill()
-//        .edgesIgnoringSafeArea(.all)
-      
-      TopButtonView()
-        .frame(height: 50)
-      Rectangle()
-        .frame(height: 3)
-        .foregroundColor(.black)
-      TextView()
-      Rectangle()
-        .frame(height: 3)
-        .foregroundColor(.black)
-      BottomButtonView()
-        .frame(height: 100)
-      
+    NavigationView {
+      VStack(spacing: 0) {
         
+  //      Image("papertexture")
+  //        .resizable()
+  //        .scaledToFill()
+  //        .edgesIgnoringSafeArea(.all)
+        
+        TopButtonView()
+          .frame(height: 50)
+        Rectangle()
+          .frame(height: 3)
+          .foregroundColor(.black)
+        TextView()
+        Rectangle()
+          .frame(height: 3)
+          .foregroundColor(.black)
+        BottomButtonView()
+          .frame(height: 100)
+        
+          
+      }
+      .background(Image("papertexture")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+      )
     }
-    .background(Image("papertexture")
-                  .resizable()
-                  .edgesIgnoringSafeArea(.all)
-    )
+    
     
     
     
@@ -44,18 +47,19 @@ struct IntroView: View {
 struct TopButtonView: View {
   
   var body: some View {
-    GeometryReader { geometry in
-      HStack(alignment: .center, spacing: 0) {
-        Text("Login")
-          .frame(maxWidth: .infinity)
-        Rectangle()
-          .foregroundColor(Color.black)
-          .frame(width: 3, height: geometry.size.height)
-        Text("Register")
-          .frame(maxWidth: .infinity)
-      }
+    
+    HStack(alignment: .center, spacing: 0) {
+      Text("Login")
+        .frame(maxWidth: .infinity)
+      Rectangle()
+        .foregroundColor(Color.black)
+        .frame(width: 3)
+        .frame(maxHeight: .infinity)
+      Text("Register")
+        .frame(maxWidth: .infinity)
+      
     }
- 
+    
 
   }
   
@@ -93,22 +97,27 @@ struct BottomButtonView: View {
 //      }
 //
 //    }
+    
     HStack(alignment: .center, spacing: 0) {
-      Text("Login")
-        .frame(maxWidth: .infinity)
+      
+      NavigationLink(destination: RegisterView()) {
+        Text("Register")
+          .frame(maxWidth: .infinity)
+          .foregroundColor(.black)
+      }
+    
+      
+      
       Rectangle()
         .foregroundColor(Color.black)
         .frame(width: 3)
         .frame(maxHeight: .infinity)
-      Text("Register")
+      
+      Text("Login")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
- 
-    
-    
     
   }
-  
 }
 
 func randomCoordinate() -> [CGFloat] {

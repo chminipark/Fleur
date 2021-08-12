@@ -9,14 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
   
-  @State var isLogedIn: Bool = true
+  @State var isLogedIn: Bool = false
   
   var body: some View {
     
     if !isLogedIn {
       IntroView()
     } else {
-      Text("this is contentview")
+      
+        Text("this is contentview")
+      
     }
     
     
