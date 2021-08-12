@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD03EDBD26C4EE330067249D /* RegisterView.swift */; };
 		BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26B26C2AA5300B094B9 /* FleurApp.swift */; };
 		BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26D26C2AA5300B094B9 /* ContentView.swift */; };
 		BD19C27026C2AA5600B094B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C26F26C2AA5600B094B9 /* Assets.xcassets */; };
 		BD19C27326C2AA5600B094B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */; };
+		BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C28326C2ADCB00B094B9 /* IntroView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD03EDBD26C4EE330067249D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		BD19C26826C2AA5300B094B9 /* Fleur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD19C26B26C2AA5300B094B9 /* FleurApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleurApp.swift; sourceTree = "<group>"; };
 		BD19C26D26C2AA5300B094B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BD19C26F26C2AA5600B094B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BD19C27426C2AA5600B094B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD19C28326C2ADCB00B094B9 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,7 @@
 		BD19C26A26C2AA5300B094B9 /* Fleur */ = {
 			isa = PBXGroup;
 			children = (
+				BD19C27A26C2AC0D00B094B9 /* Login */,
 				BD19C26B26C2AA5300B094B9 /* FleurApp.swift */,
 				BD19C26D26C2AA5300B094B9 /* ContentView.swift */,
 				BD19C26F26C2AA5600B094B9 /* Assets.xcassets */,
@@ -67,6 +72,15 @@
 				BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BD19C27A26C2AC0D00B094B9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BD19C28326C2ADCB00B094B9 /* IntroView.swift */,
+				BD03EDBD26C4EE330067249D /* RegisterView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */,
+				BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */,
 				BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */,
 				BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */,
 			);
@@ -280,7 +296,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = chmini.Fleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +318,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = chmini.Fleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
