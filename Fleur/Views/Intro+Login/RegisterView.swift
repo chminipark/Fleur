@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct RegisterView: View {
+  
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  
   var body: some View {
     Text("this is registerView")
-     
+    Button(action: {
+      self.presentationMode.wrappedValue.dismiss()
+    }, label: {
+      Text("Dismiss")
+    })
+
   }
 }
 

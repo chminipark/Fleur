@@ -13,6 +13,11 @@
 		BD19C27026C2AA5600B094B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C26F26C2AA5600B094B9 /* Assets.xcassets */; };
 		BD19C27326C2AA5600B094B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */; };
 		BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C28326C2ADCB00B094B9 /* IntroView.swift */; };
+		BD2BD71926D2196800283F11 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD71826D2196800283F11 /* SampleData.swift */; };
+		BD2BD71B26D22A8400283F11 /* HashTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD71A26D22A8400283F11 /* HashTagViewModel.swift */; };
+		BDEA946226CBF36500DB43FB /* WriteDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA946126CBF36500DB43FB /* WriteDiaryView.swift */; };
+		BDEA946426CC019D00DB43FB /* HashTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA946326CC019D00DB43FB /* HashTagView.swift */; };
+		BDEA946B26CC05DA00DB43FB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA946A26CC05DA00DB43FB /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BD19C27426C2AA5600B094B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD19C28326C2ADCB00B094B9 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		BD2BD71826D2196800283F11 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		BD2BD71A26D22A8400283F11 /* HashTagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagViewModel.swift; sourceTree = "<group>"; };
+		BDEA946126CBF36500DB43FB /* WriteDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryView.swift; sourceTree = "<group>"; };
+		BDEA946326CC019D00DB43FB /* HashTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagView.swift; sourceTree = "<group>"; };
+		BDEA946A26CC05DA00DB43FB /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +66,12 @@
 		BD19C26A26C2AA5300B094B9 /* Fleur */ = {
 			isa = PBXGroup;
 			children = (
-				BD19C27A26C2AC0D00B094B9 /* Login */,
-				BD19C26B26C2AA5300B094B9 /* FleurApp.swift */,
+				BDEA946526CC04E300DB43FB /* Constants */,
+				BDEA945E26CBF02300DB43FB /* Models */,
+				BDEA945D26CBF01C00DB43FB /* ViewModels */,
+				BDEA945C26CBF01600DB43FB /* Views */,
 				BD19C26D26C2AA5300B094B9 /* ContentView.swift */,
+				BD19C26B26C2AA5300B094B9 /* FleurApp.swift */,
 				BD19C26F26C2AA5600B094B9 /* Assets.xcassets */,
 				BD19C27426C2AA5600B094B9 /* Info.plist */,
 				BD19C27126C2AA5600B094B9 /* Preview Content */,
@@ -74,13 +87,47 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BD19C27A26C2AC0D00B094B9 /* Login */ = {
+		BD19C27A26C2AC0D00B094B9 /* Intro+Login */ = {
 			isa = PBXGroup;
 			children = (
 				BD19C28326C2ADCB00B094B9 /* IntroView.swift */,
 				BD03EDBD26C4EE330067249D /* RegisterView.swift */,
 			);
-			path = Login;
+			path = "Intro+Login";
+			sourceTree = "<group>";
+		};
+		BDEA945C26CBF01600DB43FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDEA946126CBF36500DB43FB /* WriteDiaryView.swift */,
+				BDEA946326CC019D00DB43FB /* HashTagView.swift */,
+				BD19C27A26C2AC0D00B094B9 /* Intro+Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BDEA945D26CBF01C00DB43FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BD2BD71A26D22A8400283F11 /* HashTagViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BDEA945E26CBF02300DB43FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BD2BD71826D2196800283F11 /* SampleData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDEA946526CC04E300DB43FB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BDEA946A26CC05DA00DB43FB /* AppConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +200,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */,
+				BD2BD71B26D22A8400283F11 /* HashTagViewModel.swift in Sources */,
+				BDEA946426CC019D00DB43FB /* HashTagView.swift in Sources */,
 				BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */,
+				BDEA946226CBF36500DB43FB /* WriteDiaryView.swift in Sources */,
+				BDEA946B26CC05DA00DB43FB /* AppConstants.swift in Sources */,
 				BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */,
 				BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */,
+				BD2BD71926D2196800283F11 /* SampleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

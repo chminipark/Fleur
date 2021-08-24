@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   
-  @State var isLogedIn: Bool = false
+  @State var isLogedIn: Bool = true
   
   var body: some View {
     
@@ -17,7 +17,7 @@ struct ContentView: View {
       IntroView()
     } else {
       
-        Text("this is contentview")
+      HashTagView()
       
     }
     
