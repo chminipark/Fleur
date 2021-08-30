@@ -24,7 +24,7 @@ struct IntroView: View {
       Rectangle()
         .frame(height: Constants.Intro.border)
         .foregroundColor(.black)
-      TextView()
+      IntroTextView()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       Rectangle()
         .frame(height: Constants.Intro.border)
@@ -53,7 +53,7 @@ struct TopButtonView: View {
 
 //https://stackoverflow.com/questions/63530255/swiftui-change-text-with-fade-animation
 
-struct TextView: View {
+struct IntroTextView: View {
   
   @State var coordinate: [CGFloat] = [30, 30]
   
@@ -82,6 +82,7 @@ struct TextView: View {
           }
         }
       })
+      .font(.system(size: 30))
     
     
   }
