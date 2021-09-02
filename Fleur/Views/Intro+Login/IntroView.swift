@@ -55,41 +55,81 @@ struct TopButtonView: View {
 
 struct IntroTextView: View {
   
-  @State var coordinate: [CGFloat] = [30, 30]
+  func returnVisibleTimeArray(start: Double, cntup: Double) -> [Double] {
+    var visibleTimeArray = [Double]()
+    var visibleTime: Double = start
+    visibleTimeArray.append(start)
+
+    for _ in 1..<10 {
+      visibleTime = cntup + visibleTime
+      // 소수점 둘째자리까지 반올림
+      visibleTime = round(visibleTime*100)/100
+      visibleTimeArray.append(visibleTime)
+    }
+    
+    return visibleTimeArray
+  }
   
-  @State var text: String = ""
+  var visibleTimeArray: [Double] = []
   
-  @State var visible: Bool = false
-  
-  let timer = Timer.publish(every: 6, on: .main, in: .common).autoconnect()
-  let width = UIScreen.main.bounds.width
+  init() {
+    self.visibleTimeArray = returnVisibleTimeArray(start: 0.6, cntup: 0.05)
+  }
   
   var body: some View {
     
-    Text(self.text)
-      .opacity(visible ? 1 : 0)
-      .animation(.linear(duration: 2))
-      .position(x: coordinate[0], y: coordinate[1])
-      .onReceive(timer, perform: { _ in
-        
-        self.text = dummyData.EnglishArray.randomElement()!
-        self.visible = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-          self.visible = false
-          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.coordinate = randomCoordinate()
-          }
-        }
-      })
-      .font(.system(size: 30))
-    
-    
+    ZStack {
+      ForEach(visibleTimeArray, id: \.self) { visibleTime in
+        FloatingText(animationTime: Double.random(in: 2.7...3.3), visibleTime: visibleTime)
+      }
+      
+    }
+  }
+}
+
+// animation completion 부분 extention 으로 구현하기..
+// visible time = 1
+struct FloatingText: View {
+
+  @State var coordinate: [CGFloat] = [50, 50]
+
+  @State var text: String = ""
+
+  @State var visible: Bool = false
+  
+  let visibleTime: Double
+  let animationTime: Double
+  
+  var timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+
+  init(animationTime: Double, visibleTime: Double) {
+    self.animationTime = animationTime
+    self.visibleTime = visibleTime
+    self.timer = Timer.publish(every: TimeInterval(visibleTime*2 + animationTime*2), on: .main, in: .common).autoconnect()
   }
   
+  var body: some View {
+
+    Text(self.text)
+      .font(.system(size: 40))
+      .position(x: coordinate[0], y: coordinate[1])
+      .animation(nil)
+      .opacity(visible ? 1 : 0)
+      .animation(.easeOut(duration: animationTime))
+      .onReceive(timer, perform: { _ in
+        text = dummyData.EnglishArray.randomElement()!
+        coordinate = randomCoordinate()
+        self.visible = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(visibleTime+animationTime))) {
+          self.visible = false
+        }
+      })
+  }
+
+
   func randomCoordinate() -> [CGFloat] {
     var coordinate = [CGFloat]()
-    
+
     // device 가로 세로 길이
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
@@ -99,21 +139,28 @@ struct IntroTextView: View {
       print("no safe area???")
       return [300, 300]
     }
+
+//    let x_zero: CGFloat = 30
+//    let y_zero: CGFloat = 30
+
+    // topView, bottomView 계산
+    let top = topPadding + 50
+    let bottom = bottomPadding + 70
     
-    let x_zero: CGFloat = 30
-    let y_zero: CGFloat = 30
+    let padding: CGFloat = 50
     
-    let x = CGFloat.random(in: 0...width)
-    let y = CGFloat.random(in: topPadding...height-(topPadding+bottomPadding))
-    
+    let x = CGFloat.random(in: padding...width - padding)
+    let y = CGFloat.random(in: padding...height-(top + bottom)-padding)
+
     coordinate.append(x)
     coordinate.append(y)
+
     
-    //  print(coordinate)
-    
+//    print(top, height-(top + bottom))
+//    97.0 643.0
+
     return coordinate
   }
-  
 }
 
 

@@ -152,7 +152,7 @@ struct HashTagText: View {
       
       Text(text)
         .font(.system(size: 50, weight: .semibold))
-//        .foregroundColor(Color.white.opacity(0.5))
+        .foregroundColor(Color.black.opacity(0.5))
       
       // MultiColor Text
       if !animatedText.isEmpty {
@@ -160,7 +160,7 @@ struct HashTagText: View {
           ForEach(0..<text.count, id: \.self, content: { index in
             Text(String(text[text.index(text.startIndex, offsetBy: index)]))
               .font(.system(size: 50, weight: .semibold))
-              .foregroundColor(searchTextIndex(sentence: text, search: animatedText).contains(index) ? randomColor() : Color.black)
+              .foregroundColor(searchTextIndex(sentence: text, search: animatedText).contains(index) ? randomColor() : Color.black.opacity(0.5))
               
           })
         }
@@ -199,7 +199,7 @@ struct HashTagText: View {
   }
   
   func searchTextIndex(sentence: String, search searchText: String) -> [Int] {
-    
+
     var sentence = sentence
     var start = 0
     var cnt = 1
