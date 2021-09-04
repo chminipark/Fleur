@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct WriteDiaryView: View {
+  
   var body: some View {
-    Text("This is WriteDiaryView")
+  
+    Text("WirteDiaryView")
+    
+  }
+}
+
+
+struct WriteDiaryView_Previews: PreviewProvider {
+  static var previews: some View {
+    WriteDiaryView()
   }
 }

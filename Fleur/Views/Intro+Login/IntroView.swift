@@ -60,7 +60,7 @@ struct IntroTextView: View {
     var visibleTime: Double = start
     visibleTimeArray.append(start)
 
-    for _ in 1..<10 {
+    for _ in 1...8 {
       visibleTime = cntup + visibleTime
       // 소수점 둘째자리까지 반올림
       visibleTime = round(visibleTime*100)/100
@@ -79,12 +79,85 @@ struct IntroTextView: View {
   var body: some View {
     
     ZStack {
+      IntroImage()
+      
       ForEach(visibleTimeArray, id: \.self) { visibleTime in
         FloatingText(animationTime: Double.random(in: 2.7...3.3), visibleTime: visibleTime)
       }
       
+      
+      
     }
   }
+}
+
+struct IntroImage: View {
+  
+  static let width: CGFloat = 270
+  static let height: CGFloat = width * 1.618
+  
+  @State var visible = false
+  @State var imageFileName = "1"
+  
+  var timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
+  
+  var body: some View {
+    Image(imageFileName)
+      .resizable()
+      .aspectRatio(contentMode: .fill)
+      .frame(width: IntroImage.width, height: IntroImage.height, alignment: .center)
+      .clipShape(RandomCircle())
+      .animation(nil)
+      .opacity(visible ? 1 : 0)
+      .animation(.easeOut(duration: 3))
+      .onReceive(timer, perform: { _ in
+        self.imageFileName = dummyData.ImageArray.randomElement()!
+        self.visible = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+          self.visible = false
+        }
+      })
+  }
+  
+//  struct Raindrop: Shape {
+//    func path(in rect: CGRect) -> Path {
+//      Path { path in
+//        path.move(to: CGPoint(x: rect.size.width/2, y: 0))
+//
+//        path.addQuadCurve(to: CGPoint(x: rect.size.width/2, y: rect.size.height), control: CGPoint(x: rect.size.width, y: rect.size.height))
+//
+//        path.addQuadCurve(to: CGPoint(x: rect.size.width/2, y: 0), control: CGPoint(x: 0, y: rect.size.height))
+//      }
+//    }
+//  }
+  
+  struct RandomCircle: Shape {
+    func path(in rect: CGRect) -> Path {
+      
+      let coordi_y = CGFloat.random(in: height/2-30...height/2+30)
+      let coordi_x = {
+        return CGFloat.random(in: width/2-50...width/2+50)
+      }
+      let cp: CGFloat = 20
+      
+      return Path { path in
+        path.move(to: CGPoint(x: 0, y: coordi_y))
+        
+//        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: 0), control: CGPoint(x: 0+cp, y: 0+cp))
+//        path.addQuadCurve(to: CGPoint(x: width, y: coordi_y), control: CGPoint(x: width-cp, y: 0+cp))
+//        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: height), control: CGPoint(x: width-cp, y: height-cp))
+//        path.addQuadCurve(to: CGPoint(x: 0, y: coordi_y), control: CGPoint(x: 0+cp, y: height-cp))
+        
+        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: 0), control: CGPoint(x: 0, y: 0))
+        path.addQuadCurve(to: CGPoint(x: width, y: coordi_y), control: CGPoint(x: width, y: 0))
+        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: height), control: CGPoint(x: width, y: height))
+        path.addQuadCurve(to: CGPoint(x: 0, y: coordi_y), control: CGPoint(x: 0, y: height))
+        
+      }
+    }
+  }
+  
 }
 
 // animation completion 부분 extention 으로 구현하기..
@@ -216,6 +289,13 @@ class dummyData {
   
   static var EnglishArray = English.components(separatedBy: " ")
   
+  static let ImageArray: [String] = {
+    var a = [String]()
+    for i in stride(from: 1, through: 15, by: 1) {
+      a.append(String(i))
+    }
+    return a
+  }()
 }
 
 

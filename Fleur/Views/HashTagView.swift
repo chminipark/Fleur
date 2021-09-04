@@ -100,21 +100,6 @@ struct HashTagView: View {
       SearchBar(searchText: $searchText)
       
       ScrollView(.vertical, showsIndicators: false, content: {
-        
-//        VStack {
-//          ForEach(1..<100) { number in
-//            Text("item \(number)")
-//              .font(.title)
-//          }
-//        }
-//        .frame(maxWidth: .infinity)
-        
-//          ForEach(1..<100) { _ in
-//            HashTagTextRowView()
-//          }
-//
-//        Text("\(dummyData.English)")
-//          .font(.system(size: 50))
           
         VStack(spacing: 20) {
           ForEach(searchText.isEmpty ? data : data.filter({($0.lowercased()).contains(self.searchText.lowercased())}),
