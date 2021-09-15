@@ -56,11 +56,14 @@ struct TopButtonView: View {
 struct IntroTextView: View {
   
   func returnVisibleTimeArray(start: Double, cntup: Double) -> [Double] {
+    
+    let count = 3
+    
     var visibleTimeArray = [Double]()
     var visibleTime: Double = start
     visibleTimeArray.append(start)
-
-    for _ in 1...8 {
+    
+    for _ in 1...count {
       visibleTime = cntup + visibleTime
       // 소수점 둘째자리까지 반올림
       visibleTime = round(visibleTime*100)/100
@@ -77,29 +80,45 @@ struct IntroTextView: View {
   }
   
   var body: some View {
-    
-    ZStack {
-      IntroImage()
-      
-      ForEach(visibleTimeArray, id: \.self) { visibleTime in
-        FloatingText(animationTime: Double.random(in: 2.7...3.3), visibleTime: visibleTime)
+    GeometryReader { geo in
+      ZStack {
+//                IntroImage(width: geo.size.width/3*2)
+//        
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: 0))
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: 0))
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3))
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3))
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3*2))
+//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3*2))
+        
       }
-      
-      
-      
     }
+    //        IntroImage()
+    //
+    //        ForEach(visibleTimeArray, id: \.self) { visibleTime in
+    //          FloatingText(animationTime: Double.random(in: 2.7...3.3), visibleTime: visibleTime)
+    //        }
   }
 }
 
+
+
+
+
 struct IntroImage: View {
   
-  static let width: CGFloat = 270
-  static let height: CGFloat = width * 1.618
+  static var width: CGFloat = 200
+  static var height: CGFloat = width * 1.618
   
   @State var visible = false
   @State var imageFileName = "1"
   
   var timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
+  
+  init(width: CGFloat) {
+    IntroImage.width = width
+    IntroImage.height = width * 1.618
+  }
   
   var body: some View {
     Image(imageFileName)
@@ -120,17 +139,6 @@ struct IntroImage: View {
       })
   }
   
-//  struct Raindrop: Shape {
-//    func path(in rect: CGRect) -> Path {
-//      Path { path in
-//        path.move(to: CGPoint(x: rect.size.width/2, y: 0))
-//
-//        path.addQuadCurve(to: CGPoint(x: rect.size.width/2, y: rect.size.height), control: CGPoint(x: rect.size.width, y: rect.size.height))
-//
-//        path.addQuadCurve(to: CGPoint(x: rect.size.width/2, y: 0), control: CGPoint(x: 0, y: rect.size.height))
-//      }
-//    }
-//  }
   
   struct RandomCircle: Shape {
     func path(in rect: CGRect) -> Path {
@@ -144,10 +152,10 @@ struct IntroImage: View {
       return Path { path in
         path.move(to: CGPoint(x: 0, y: coordi_y))
         
-//        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: 0), control: CGPoint(x: 0+cp, y: 0+cp))
-//        path.addQuadCurve(to: CGPoint(x: width, y: coordi_y), control: CGPoint(x: width-cp, y: 0+cp))
-//        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: height), control: CGPoint(x: width-cp, y: height-cp))
-//        path.addQuadCurve(to: CGPoint(x: 0, y: coordi_y), control: CGPoint(x: 0+cp, y: height-cp))
+        //        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: 0), control: CGPoint(x: 0+cp, y: 0+cp))
+        //        path.addQuadCurve(to: CGPoint(x: width, y: coordi_y), control: CGPoint(x: width-cp, y: 0+cp))
+        //        path.addQuadCurve(to: CGPoint(x: coordi_x(), y: height), control: CGPoint(x: width-cp, y: height-cp))
+        //        path.addQuadCurve(to: CGPoint(x: 0, y: coordi_y), control: CGPoint(x: 0+cp, y: height-cp))
         
         path.addQuadCurve(to: CGPoint(x: coordi_x(), y: 0), control: CGPoint(x: 0, y: 0))
         path.addQuadCurve(to: CGPoint(x: width, y: coordi_y), control: CGPoint(x: width, y: 0))
@@ -157,109 +165,111 @@ struct IntroImage: View {
       }
     }
   }
-  
 }
 
 // animation completion 부분 extention 으로 구현하기..
 // visible time = 1
 struct FloatingText: View {
-
-  @State var coordinate: [CGFloat] = [50, 50]
-
+  
+  @State var randomCGPoint: CGPoint
+  @State var randomCGSize: CGSize
+  
   @State var text: String = ""
-
+  
   @State var visible: Bool = false
   
   let visibleTime: Double
   let animationTime: Double
+  let cgSize: CGSize
+  let cgPoint_Zero: CGPoint
   
   var timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
-
-  init(animationTime: Double, visibleTime: Double) {
+  
+  init(animationTime: Double, visibleTime: Double, cgSize: CGSize, cgPointZero: CGPoint) {
     self.animationTime = animationTime
     self.visibleTime = visibleTime
     self.timer = Timer.publish(every: TimeInterval(visibleTime*2 + animationTime*2), on: .main, in: .common).autoconnect()
+    self.cgSize = cgSize
+    self.cgPoint_Zero = cgPointZero
+    self.randomCGSize = cgSize
+    self.randomCGPoint = cgPointZero
   }
   
   var body: some View {
-
-    Text(self.text)
-      .font(.system(size: 40))
-      .position(x: coordinate[0], y: coordinate[1])
-      .animation(nil)
-      .opacity(visible ? 1 : 0)
-      .animation(.easeOut(duration: animationTime))
-      .onReceive(timer, perform: { _ in
-        text = dummyData.EnglishArray.randomElement()!
-        coordinate = randomCoordinate()
-        self.visible = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(visibleTime+animationTime))) {
-          self.visible = false
-        }
-      })
-  }
-
-
-  func randomCoordinate() -> [CGFloat] {
-    var coordinate = [CGFloat]()
-
-    // device 가로 세로 길이
-    let width = UIScreen.main.bounds.width
-    let height = UIScreen.main.bounds.height
-    // safearea
-    guard let topPadding = UIApplication.shared.windows.first?.safeAreaInsets.top,
-          let bottomPadding = UIApplication.shared.windows.first?.safeAreaInsets.bottom else {
-      print("no safe area???")
-      return [300, 300]
+    Group {
+      Rectangle()
+        .border(Color.green, width: 5)
+        .frame(width: cgSize.width, height: cgSize.height, alignment: .center)
+        .position(x: cgPoint_Zero.x + cgSize.width/2, y: cgPoint_Zero.y + cgSize.height/2)
+        .foregroundColor(.clear)
+      
+      Text(self.text)
+        .border(Color.red, width: 5)
+        .font(.custom("Times New Roman", size: 100))
+        .minimumScaleFactor(0.001)
+        .frame(width: randomCGSize.width, height: randomCGSize.height, alignment: .leading)
+        .position(x: randomCGPoint.x, y: randomCGPoint.y)
+        .animation(nil)
+        .opacity(visible ? 1 : 0)
+        .animation(.easeOut(duration: animationTime))
+        .onReceive(timer, perform: { _ in
+          text = dummyData.EnglishArray.randomElement()!
+          randomCGSize = randomSize()
+          randomCGPoint = randomPoint()
+          self.visible = true
+          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(visibleTime+animationTime))) {
+            self.visible = false
+          }
+        })
     }
-
-//    let x_zero: CGFloat = 30
-//    let y_zero: CGFloat = 30
-
-    // topView, bottomView 계산
-    let top = topPadding + 50
-    let bottom = bottomPadding + 70
+  }
+  
+  func randomSize() -> CGSize {
+    var randomSize = CGSize()
     
-    let padding: CGFloat = 50
+    let maxWidth = self.cgSize.width
+    let maxHeight = self.cgSize.height
+    let minWidth = self.cgSize.width/2
+    let minHeight = self.cgSize.height/2
     
-    let x = CGFloat.random(in: padding...width - padding)
-    let y = CGFloat.random(in: padding...height-(top + bottom)-padding)
-
-    coordinate.append(x)
-    coordinate.append(y)
-
+    randomSize.width = CGFloat.random(in: minWidth...maxWidth)
+    randomSize.height = CGFloat.random(in: minHeight...maxHeight)
     
-//    print(top, height-(top + bottom))
-//    97.0 643.0
-
-    return coordinate
+    return randomSize
+  }
+  
+  func randomPoint() -> CGPoint {
+    var randomPoint = CGPoint()
+    
+    // position기준(가운데) + randomsize/2
+    let min_X = cgPoint_Zero.x + randomCGSize.width/2
+    let min_Y = cgPoint_Zero.y + randomCGSize.height/2
+    // position기준(가운데) + cgsize - randomsize/2
+    let max_X = cgPoint_Zero.x + cgSize.width - randomCGSize.width/2
+    let max_Y = cgPoint_Zero.y + cgSize.height - randomCGSize.height/2
+    
+    randomPoint.x = CGFloat.random(in: min_X...max_X)
+    randomPoint.y = CGFloat.random(in: min_Y...max_Y)
+    
+    return randomPoint
   }
 }
 
 
 struct BottomButtonView: View {
   
-  @State var isPresented1: Bool = false
-  @State var isPresented2: Bool = false
+  @State var showRegisterSheet: Bool = false
+  @State var showLoginSheet: Bool = false
   
   var body: some View {
     
     HStack(alignment: .center, spacing: 0) {
-//      Text("Register")
-//        .frame(maxWidth: .infinity)
-//        .onTapGesture {
-//          self.isPresented1.toggle()
-//        }
-//        .sheet(isPresented: self.$isPresented1) {
-//          RegisterView()
-//        }
-      Button(action: {
-        self.isPresented1.toggle()
-      }, label: {
-        Text("Register")
-      })
-      .sheet(isPresented: self.$isPresented1) {
-        RegisterView()
+      
+      Button("Login") {
+        showLoginSheet.toggle()
+      }
+      .sheet(isPresented: $showLoginSheet) {
+        LoginView()
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .foregroundColor(.black)
@@ -269,8 +279,14 @@ struct BottomButtonView: View {
         .frame(width: Constants.Intro.border)
         .frame(maxHeight: .infinity)
       
-      Text("Login")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+      Button("Register") {
+        showRegisterSheet.toggle()
+      }
+      .sheet(isPresented: $showRegisterSheet) {
+        RegisterView()
+      }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .foregroundColor(.black)
       
     }
     

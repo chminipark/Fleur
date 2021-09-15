@@ -9,9 +9,24 @@ import SwiftUI
 
 struct WriteDiaryView: View {
   
+  @EnvironmentObject var fbAuth: FBAuth
+  
   var body: some View {
   
-    Text("WirteDiaryView")
+    VStack(spacing: 30) {
+      Text("This is WirteDiaryView")
+      
+      Button {
+        fbAuth.signOut()
+      } label: {
+        Text("SignOut")
+          .frame(width: 200, height: 50, alignment: .center)
+          .foregroundColor(.white)
+          .background(Color.blue)
+          .clipShape(Capsule())
+      }
+
+    }
     
   }
 }

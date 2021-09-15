@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
   
-  @State var isLogedIn: Bool = false
+  @EnvironmentObject var fbAuth: FBAuth
   
   var body: some View {
-    
-    if !isLogedIn {
-      IntroView()
-    } else {
-      
-      HashTagView()
-      
+    ZStack{
+      if fbAuth.signedIn {
+        HashTagView()
+      } else {
+        IntroView()
+      }
+    }
+    .onAppear {
+      fbAuth.signedIn = fbAuth.isSignedIn
     }
     
     

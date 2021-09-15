@@ -8,38 +8,88 @@
 // lazy stack 사용해보기..
 import SwiftUI
 
-// searchable List 헤더부분에 고정?
-struct SearchBar: View {
-  @Binding var searchText: String
+// swiftui에서 콜렉션뷰 만들기
+//https://stackoverflow.com/questions/56466306/uicollectionview-and-swiftui
+
+struct HashTagView: View {
   
-  @State private var isEditing = false
+  @ObservedObject var hashTagViewModel = HashTagViewModel()
+  
+  @State var data = dummyData.EnglishArray
+  
+  @State var searchText: String = ""
   
   var body: some View {
-    HStack {
+    VStack {
+      SearchBar(searchText: $searchText)
+      
+      ScrollView(.vertical, showsIndicators: false, content: {
+          
+        VStack(spacing: 20) {
+          ForEach(searchText.isEmpty ? data : data.filter({($0.lowercased()).contains(self.searchText.lowercased())}),
+                  id: \.self,
+                  content: { data in
+                    HashTagText(text: data, animatedText: searchText)
+          })
+          
+        }
+
+       
+        
+      })
+      .padding([.horizontal, .bottom])
+      .frame(maxWidth: .infinity)
+        
+      
+      
+    }
+  }
+}
+
+// searchable List 헤더부분에 고정?
+struct SearchBar: View {
+  
+  @Binding var searchText: String
+  
+  @EnvironmentObject var fbAuth: FBAuth
+  
+  let height = UIScreen.main.bounds.height/15
+  
+  var body: some View {
+    HStack(alignment: .center) {
+      
+      Button(action: {
+        fbAuth.signOut()
+      }, label: {
+        Image(systemName: "line.horizontal.3")
+          .resizable()
+          .frame(width: height-20, height: height-20)
+          .scaledToFit()
+      })
+      .frame(width: height, height: height)
       
       TextField("Search ...", text: $searchText)
-        .padding(7)
-        .padding(.horizontal, 25)
-        .background(Color(.white))
+        .background(Color(.lightGray))
         .cornerRadius(8)
-        .padding(.horizontal, 10)
         .autocapitalization(.none)
-        .onTapGesture {
-          self.isEditing = true
-        }
+        .disableAutocorrection(true)
       
-      if isEditing {
-        Button(action: {
-          self.isEditing = false
-          print("\(searchText)")
-        }, label: {
-          Text("search")
-        })
-        .padding(.trailing, 10)
-        .transition(.move(edge: .trailing))
-        .animation(.default)
-      }
+      Button(action: {
+        print("")
+      }, label: {
+        Image(systemName: "square.and.pencil")
+          .resizable()
+          .frame(width: height-10, height: height-10)
+          .scaledToFit()
+
+      })
+      .frame(width: height, height: height)
+      
     }
+    .frame(height: height)
+    .padding(7)
+    
+
   }
 }
 
@@ -84,43 +134,7 @@ struct SearchBar: View {
 
 
 
-// swiftui에서 콜렉션뷰 만들기
-//https://stackoverflow.com/questions/56466306/uicollectionview-and-swiftui
 
-struct HashTagView: View {
-  
-  @ObservedObject var hashTagViewModel = HashTagViewModel()
-  
-  @State var data = dummyData.EnglishArray
-  
-  @State var searchText: String = ""
-  
-  var body: some View {
-    VStack {
-      SearchBar(searchText: $searchText)
-      
-      ScrollView(.vertical, showsIndicators: false, content: {
-          
-        VStack(spacing: 20) {
-          ForEach(searchText.isEmpty ? data : data.filter({($0.lowercased()).contains(self.searchText.lowercased())}),
-                  id: \.self,
-                  content: { data in
-                    HashTagText(text: data, animatedText: searchText)
-          })
-          
-        }
-
-       
-        
-      })
-      .padding([.horizontal, .bottom])
-      .frame(maxWidth: .infinity)
-        
-      
-      
-    }
-  }
-}
 
 // Hstack 으로 활용..
 struct HashTagText: View {
