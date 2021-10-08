@@ -20,76 +20,103 @@ struct HashTagView: View {
   @State var searchText: String = ""
   
   var body: some View {
-    VStack {
-      SearchBar(searchText: $searchText)
-      
-      ScrollView(.vertical, showsIndicators: false, content: {
-          
-        VStack(spacing: 20) {
-          ForEach(searchText.isEmpty ? data : data.filter({($0.lowercased()).contains(self.searchText.lowercased())}),
-                  id: \.self,
-                  content: { data in
-                    HashTagText(text: data, animatedText: searchText)
-          })
-          
-        }
-
-       
+    NavigationView {
+      VStack {
+        SearchBar(searchText: $searchText)
         
-      })
-      .padding([.horizontal, .bottom])
-      .frame(maxWidth: .infinity)
-        
-      
-      
+        ScrollView(.vertical, showsIndicators: false, content: {
+          
+          VStack(spacing: 20) {
+            ForEach(searchText.isEmpty ? data : data.filter({($0.lowercased()).contains(self.searchText.lowercased())}),
+                    id: \.self,
+                    content: { data in
+                      HashTagText(text: data, animatedText: searchText)
+                    })
+          }
+        })
+        .padding([.horizontal, .bottom])
+        .frame(maxWidth: .infinity)
+      }
+      .navigationBarTitle("")
+      .navigationBarHidden(true)
+      .modifier(SetBackground())
     }
   }
 }
 
-// searchable List 헤더부분에 고정?
+// searchable List 헤더부분에 고정? (searchable)
 struct SearchBar: View {
   
+  @State var isSearch = false
   @Binding var searchText: String
-  
   @EnvironmentObject var fbAuth: FBAuth
   
-  let height = UIScreen.main.bounds.height/15
-  
   var body: some View {
-    HStack(alignment: .center) {
-      
-      Button(action: {
-        fbAuth.signOut()
-      }, label: {
-        Image(systemName: "line.horizontal.3")
-          .resizable()
-          .frame(width: height-20, height: height-20)
-          .scaledToFit()
-      })
-      .frame(width: height, height: height)
-      
-      TextField("Search ...", text: $searchText)
-        .background(Color(.lightGray))
-        .cornerRadius(8)
-        .autocapitalization(.none)
-        .disableAutocorrection(true)
-      
-      Button(action: {
-        print("")
-      }, label: {
-        Image(systemName: "square.and.pencil")
-          .resizable()
-          .frame(width: height-10, height: height-10)
-          .scaledToFit()
-
-      })
-      .frame(width: height, height: height)
-      
-    }
-    .frame(height: height)
-    .padding(7)
     
-
+    if isSearch {
+      HStack {
+        HStack {
+          Image(systemName: "magnifyingglass")
+            .foregroundColor(.gray)
+          TextField("Search...", text: $searchText)
+          Button(action: {
+            withAnimation {
+              searchText = ""
+            }
+          }, label: {
+            Image(systemName: "xmark.circle")
+              .foregroundColor(.gray)
+          })
+        }
+        .padding()
+        .background(Color.init(.systemGray5))
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        
+        Button(action: {
+          withAnimation {
+            isSearch.toggle()
+          }
+        }, label: {
+          Text("Cancel")
+        })
+        
+      }
+      .padding(.horizontal)
+    }
+    
+    
+    else {
+      HStack {
+        Text("Sep. 16.")
+          .font(.system(size: 30))
+          .fontWeight(.semibold)
+        
+        Spacer()
+        
+        Button(action: {
+          withAnimation(.easeOut) {
+            isSearch.toggle()
+            fbAuth.signOut()
+          }
+        }, label: {
+          Image(systemName: "magnifyingglass")
+            .font(.system(size: 20, weight: .bold))
+            .foregroundColor(.black)
+        })
+        
+        NavigationLink(
+          destination: DiaryView(),
+          label: {
+            Image(systemName: "pencil.tip.crop.circle")
+              .font(.system(size: 20, weight: .bold))
+              .foregroundColor(.black)
+          })
+      }
+      .padding(.top, 20)
+      .padding(.bottom, 10)
+      .padding(.horizontal)
+      
+    }// View
   }
 }
 
@@ -160,7 +187,7 @@ struct HashTagText: View {
             Text(String(text[text.index(text.startIndex, offsetBy: index)]))
               .font(.system(size: 50, weight: .semibold))
               .foregroundColor(searchTextIndex(sentence: text, search: animatedText).contains(index) ? randomColor() : Color.black.opacity(0.5))
-              
+            
           })
         }
         .mask(
@@ -198,7 +225,7 @@ struct HashTagText: View {
   }
   
   func searchTextIndex(sentence: String, search searchText: String) -> [Int] {
-
+    
     var sentence = sentence
     var start = 0
     var cnt = 1
@@ -219,7 +246,7 @@ struct HashTagText: View {
     
     return indexS
   }
-
+  
   
 }
 

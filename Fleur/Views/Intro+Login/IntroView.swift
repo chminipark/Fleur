@@ -18,42 +18,52 @@ struct IntroView: View {
   var body: some View {
     
     VStack(spacing: 0) {
-      TopButtonView()
-        .frame(height: 50)
+      // top
+      HStack(alignment: .center, spacing: 0) {
+        Text("Fleur")
+        //          .frame(maxWidth: .infinity, maxHeight: .infinity)
+      }
+      .frame(height: 50)
+      // line
+      IntroLine()
       
-      Rectangle()
-        .frame(height: Constants.Intro.border)
-        .foregroundColor(.black)
-      IntroTextView()
+      // middle
+      MiddleTextAndImageView()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-      Rectangle()
-        .frame(height: Constants.Intro.border)
-        .foregroundColor(.black)
       
+      // line
+      IntroLine()
+      // bottom
       BottomButtonView()
         .frame(height: 70)
     }
     .background(Image("papertexture")
                   .resizable()
-                  .edgesIgnoringSafeArea(.all)
+                  .ignoresSafeArea()
     )
     
   }
 }
 
-struct TopButtonView: View {
+struct IntroLine: View {
   var body: some View {
-    HStack(alignment: .center, spacing: 0) {
-      Text("Fleur")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
+    Rectangle()
+      .frame(height: Constants.Intro.border)
+      .foregroundColor(.black)
   }
 }
+
+//
+//struct TopButtonView: View {
+//  var body: some View {
+//
+//  }
+//}
 
 
 //https://stackoverflow.com/questions/63530255/swiftui-change-text-with-fade-animation
 
-struct IntroTextView: View {
+struct MiddleTextAndImageView: View {
   
   func returnVisibleTimeArray(start: Double, cntup: Double) -> [Double] {
     
@@ -82,14 +92,14 @@ struct IntroTextView: View {
   var body: some View {
     GeometryReader { geo in
       ZStack {
-//                IntroImage(width: geo.size.width/3*2)
-//        
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: 0))
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: 0))
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3))
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3))
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3*2))
-//                FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3*2))
+//        RandomImageView(width: geo.size.width/3*2)
+//
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: 0))
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: 0))
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3))
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3))
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3*2))
+//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3*2))
         
       }
     }
@@ -105,7 +115,7 @@ struct IntroTextView: View {
 
 
 
-struct IntroImage: View {
+struct RandomImageView: View {
   
   static var width: CGFloat = 200
   static var height: CGFloat = width * 1.618
@@ -116,15 +126,15 @@ struct IntroImage: View {
   var timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
   
   init(width: CGFloat) {
-    IntroImage.width = width
-    IntroImage.height = width * 1.618
+    RandomImageView.width = width
+    RandomImageView.height = width * 1.618
   }
   
   var body: some View {
     Image(imageFileName)
       .resizable()
       .aspectRatio(contentMode: .fill)
-      .frame(width: IntroImage.width, height: IntroImage.height, alignment: .center)
+      .frame(width: RandomImageView.width, height: RandomImageView.height, alignment: .center)
       .clipShape(RandomCircle())
       .animation(nil)
       .opacity(visible ? 1 : 0)
