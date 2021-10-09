@@ -36,10 +36,11 @@ struct DrawingView: View {
       
       return AnyView (
         ZStack {
-          Color.black.opacity(0.4).ignoresSafeArea()
+          Color.black.opacity(0.3).ignoresSafeArea()
           
           VStack {
             DrawingViewCustomNavBar()
+              .foregroundColor(.black)
             
             Spacer()
             
@@ -96,6 +97,7 @@ struct DrawingView: View {
               diaryViewModel.isShowImgPicker.toggle()
             } label: {
               Image(systemName: "photo")
+                .modifier(ButtonImageDesign())
             }
             
             Spacer()
@@ -104,6 +106,7 @@ struct DrawingView: View {
               diaryViewModel.isShowAddTextInCanvasView.toggle()
             } label: {
               Image(systemName: "textformat.abc")
+                .modifier(ButtonImageDesign())
             }
             
             Spacer()
@@ -112,6 +115,7 @@ struct DrawingView: View {
               print(#fileID, #function, #line)
             } label: {
               Image(systemName: "pencil.tip.crop.circle")
+                .modifier(ButtonImageDesign())
             }
           }
         }

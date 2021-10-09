@@ -19,6 +19,9 @@
 		BD2BD71B26D22A8400283F11 /* HashTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD71A26D22A8400283F11 /* HashTagViewModel.swift */; };
 		BD2E2E9526F0C87D009F9FD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD2E2E9426F0C87D009F9FD7 /* GoogleService-Info.plist */; };
 		BD2E2E9926F0DE07009F9FD7 /* FBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E2E9826F0DE07009F9FD7 /* FBAuth.swift */; };
+		BD5D7119271177270002CD28 /* ExpandableButtonPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D7118271177260002CD28 /* ExpandableButtonPanel.swift */; };
+		BD5D711C2711781D0002CD28 /* DiaryViewCustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D711B2711781D0002CD28 /* DiaryViewCustomNavBar.swift */; };
+		BD5D711E2711784B0002CD28 /* DiaryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D711D2711784B0002CD28 /* DiaryRowView.swift */; };
 		BD5E8F3C26FB4422008C94FA /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E8F3B26FB4422008C94FA /* ImagePickerView.swift */; };
 		BD5E8F3E26FB45F9008C94FA /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E8F3D26FB45F9008C94FA /* DrawingViewModel.swift */; };
 		BD5E8F4026FB491F008C94FA /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E8F3F26FB491F008C94FA /* DrawingView.swift */; };
@@ -50,6 +53,9 @@
 		BD2BD71A26D22A8400283F11 /* HashTagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagViewModel.swift; sourceTree = "<group>"; };
 		BD2E2E9426F0C87D009F9FD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD2E2E9826F0DE07009F9FD7 /* FBAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuth.swift; sourceTree = "<group>"; };
+		BD5D7118271177260002CD28 /* ExpandableButtonPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableButtonPanel.swift; sourceTree = "<group>"; };
+		BD5D711B2711781D0002CD28 /* DiaryViewCustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewCustomNavBar.swift; sourceTree = "<group>"; };
+		BD5D711D2711784B0002CD28 /* DiaryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRowView.swift; sourceTree = "<group>"; };
 		BD5E8F3B26FB4422008C94FA /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		BD5E8F3D26FB45F9008C94FA /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 		BD5E8F3F26FB491F008C94FA /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -136,10 +142,10 @@
 		BD1AC1922700A3F9006CBAC5 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				BD5D711A271177DD0002CD28 /* DiaryView */,
 				BD5E8F3B26FB4422008C94FA /* ImagePickerView.swift */,
 				BD5E8F3F26FB491F008C94FA /* DrawingView.swift */,
 				BD1AC19027007968006CBAC5 /* MemoView.swift */,
-				BDEA946126CBF36500DB43FB /* DiaryView.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -161,6 +167,17 @@
 				BD2E2E9826F0DE07009F9FD7 /* FBAuth.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BD5D711A271177DD0002CD28 /* DiaryView */ = {
+			isa = PBXGroup;
+			children = (
+				BDEA946126CBF36500DB43FB /* DiaryView.swift */,
+				BD5D711B2711781D0002CD28 /* DiaryViewCustomNavBar.swift */,
+				BD5D711D2711784B0002CD28 /* DiaryRowView.swift */,
+				BD5D7118271177260002CD28 /* ExpandableButtonPanel.swift */,
+			);
+			path = DiaryView;
 			sourceTree = "<group>";
 		};
 		BDEA945C26CBF01600DB43FB /* Views */ = {
@@ -326,11 +343,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD2E2E9926F0DE07009F9FD7 /* FBAuth.swift in Sources */,
+				BD5D711C2711781D0002CD28 /* DiaryViewCustomNavBar.swift in Sources */,
 				BD8CF1FB2705DB5100A20077 /* ViewModifiers.swift in Sources */,
 				BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */,
 				BD2BD71B26D22A8400283F11 /* HashTagViewModel.swift in Sources */,
 				BDEA946426CC019D00DB43FB /* HashTagView.swift in Sources */,
 				BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */,
+				BD5D7119271177270002CD28 /* ExpandableButtonPanel.swift in Sources */,
 				BD5E8F3E26FB45F9008C94FA /* DrawingViewModel.swift in Sources */,
 				BDE3327927069F3F00AE88D7 /* Extensions.swift in Sources */,
 				BD1AC1B72701B509006CBAC5 /* DiaryViewModel.swift in Sources */,
@@ -340,6 +359,7 @@
 				BD1AC1B52701A20D006CBAC5 /* DiaryData.swift in Sources */,
 				BD1AC19127007968006CBAC5 /* MemoView.swift in Sources */,
 				BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */,
+				BD5D711E2711784B0002CD28 /* DiaryRowView.swift in Sources */,
 				BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */,
 				BD5E8F3C26FB4422008C94FA /* ImagePickerView.swift in Sources */,
 				BDE3327B27074D1A00AE88D7 /* TextBox.swift in Sources */,

@@ -89,6 +89,4 @@ class DiaryViewModel: ObservableObject {
   
 //  @Published var fullString = NSMutableAttributedString()
   
-  
-  
 }
