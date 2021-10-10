@@ -71,7 +71,7 @@ struct DiaryView: View {
 //              }
 //              .frame(width: 50, height: 50)
               ExpandableButtonPanel(primaryButton: ExpandableButtonItem(label: Image(systemName: "minus"), action: {isEditMode.toggle()}), expandedButtons: [])
-                .padding()
+//                .padding()
               
               Spacer()
               
@@ -85,7 +85,7 @@ struct DiaryView: View {
                   diaryViewModel.addContentText()
                 }),
               ])
-                .padding()
+//                .padding()
               
               //              Button {
               //                isShowAddACSheet.toggle()

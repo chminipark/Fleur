@@ -14,7 +14,7 @@ struct ExpandableButtonPanel: View {
   let expandedButtons: [ExpandableButtonItem]
   
   private let size: CGFloat = 40
-  private let border: CGFloat = 5
+//  private let border: CGFloat = 5
   
   @State var isExpanded = false
   
@@ -22,20 +22,20 @@ struct ExpandableButtonPanel: View {
     ZStack {
       
       // border
-      VStack {
-        if isExpanded && expandedButtons.count > 0 {
-          ForEach(1...expandedButtons.count, id: \.self) { any in
-            Rectangle()
-              .foregroundColor(.clear)
-              .frame(width: size+border, height: size)
-          }
-        }
-        Rectangle()
-          .foregroundColor(.clear)
-          .frame(width: size+border, height: size+border)
-      }
-      .background(Color.black)
-      .clipShape(Capsule())
+//      VStack {
+//        if isExpanded && expandedButtons.count > 0 {
+//          ForEach(1...expandedButtons.count, id: \.self) { any in
+//            Rectangle()
+//              .foregroundColor(.clear)
+//              .frame(width: size+border, height: size)
+//          }
+//        }
+//        Rectangle()
+//          .foregroundColor(.clear)
+//          .frame(width: size+border, height: size+border)
+//      }
+//      .background(Color.black)
+//      .clipShape(Capsule())
       
       // button
       VStack {
@@ -62,7 +62,7 @@ struct ExpandableButtonPanel: View {
         .frame(width: size, height: size)
 //        .padding()
       }
-      .background(Color.bgColor)
+      .background(Color.clear)
       .clipShape(Capsule())
       
     }

@@ -36,11 +36,10 @@ struct DrawingView: View {
       
       return AnyView (
         ZStack {
-          Color.black.opacity(0.3).ignoresSafeArea()
+          Color.black.opacity(0.2).ignoresSafeArea()
           
           VStack {
             DrawingViewCustomNavBar()
-              .foregroundColor(.black)
             
             Spacer()
             
@@ -89,36 +88,38 @@ struct DrawingView: View {
             
             Spacer()
             
+            DrawingViewCustomToolBar()
           }
         } // ZStack
-        .toolbar {
-          ToolbarItemGroup(placement: ToolbarItemPlacement.bottomBar) {
-            Button {
-              diaryViewModel.isShowImgPicker.toggle()
-            } label: {
-              Image(systemName: "photo")
-                .modifier(ButtonImageDesign())
-            }
-            
-            Spacer()
-            
-            Button {
-              diaryViewModel.isShowAddTextInCanvasView.toggle()
-            } label: {
-              Image(systemName: "textformat.abc")
-                .modifier(ButtonImageDesign())
-            }
-            
-            Spacer()
-            
-            Button {
-              print(#fileID, #function, #line)
-            } label: {
-              Image(systemName: "pencil.tip.crop.circle")
-                .modifier(ButtonImageDesign())
-            }
-          }
-        }
+//        .toolbar {
+//          ToolbarItemGroup(placement: ToolbarItemPlacement.bottomBar) {
+//            Button {
+//              diaryViewModel.isShowImgPicker.toggle()
+//            } label: {
+//              Image(systemName: "photo")
+//                .modifier(ButtonImageDesign())
+//            }
+//
+//            Spacer()
+//
+//            Button {
+//              diaryViewModel.isShowAddTextInCanvasView.toggle()
+//            } label: {
+//              Image(systemName: "textformat.abc")
+//                .modifier(ButtonImageDesign())
+//            }
+//
+//            Spacer()
+//
+//            Button {
+//              print(#fileID, #function, #line)
+//            } label: {
+//              Image(systemName: "pencil.tip.crop.circle")
+//                .modifier(ButtonImageDesign())
+//            }
+//          }
+//
+//        }
         .sheet(isPresented: $diaryViewModel.isShowImgPicker) {
           ImagePickerView(isShowPicker: $diaryViewModel.isShowImgPicker, imgData: $diaryViewModel.imageData)
         }
@@ -131,101 +132,6 @@ struct DrawingView: View {
   }// body
 }
 
-
-struct DrawingViewCustomNavBar: View {
-  
-  @EnvironmentObject var diaryViewModel: DiaryViewModel
-  
-  var body: some View {
-    HStack {
-      
-      Button(action: {
-        diaryViewModel.isShowDrawingView.toggle()
-      }, label: {
-        Image(systemName: "chevron.backward")
-          .font(.system(size: 20, weight: .bold))
-          .foregroundColor(.white)
-      })
-      
-      Spacer()
-      
-      Button(action: {
-        diaryViewModel.saveImage()
-        diaryViewModel.isShowDrawingView.toggle()
-      }, label: {
-        Image(systemName: "square.and.arrow.down")
-          .font(.system(size: 20, weight: .bold))
-          .foregroundColor(.white)
-      })
-      
-    }
-    .padding()
-    .frame(height: 45)
-  }
-}
-
-
-struct CanvasView: UIViewRepresentable {
-  
-  var rect: CGSize
-  @Binding var canvas: PKCanvasView
-  
-  func makeUIView(context: Context) -> PKCanvasView {
-    canvas.isOpaque = false
-    canvas.drawingPolicy = .anyInput
-    canvas.backgroundColor = .clear
-    canvas.frame.size = rect
-    //    let toolPicker = PKToolPicker()
-    //
-    //    toolPicker.setVisible(true, forFirstResponder: canvas)
-    //    toolPicker.addObserver(canvas)
-    //    canvas.becomeFirstResponder()
-    
-    return canvas
-  }
-  
-  func updateUIView(_ uiView: UIViewType, context: Context) {
-    
-  }
-}
-
-struct AddTextInCanvasView: View {
-  
-  @EnvironmentObject var diaryViewModel: DiaryViewModel
-  @State var text: String = ""
-  
-  var body: some View {
-    VStack {
-      HStack {
-        Button {
-          diaryViewModel.addTextInCanvas(text: text)
-          diaryViewModel.isShowAddTextInCanvasView.toggle()
-        } label: {
-          Text("추가")
-        }
-        
-        Spacer()
-        
-        Button {
-          diaryViewModel.isShowAddTextInCanvasView.toggle()
-        } label: {
-          Text("취소")
-        }
-      }
-      
-      Spacer()
-      
-      TextField("단어를 입력하세용", text: $text)
-        .padding()
-        .colorScheme(.dark)
-        .foregroundColor(.white)
-      
-      Spacer()
-    }
-    .background(Color.black.opacity(0.7).ignoresSafeArea())
-    
-  }
-}
 
 
 
@@ -270,11 +176,12 @@ struct AddTextInCanvasView: View {
 
 
 
-//struct DrawingView_Previews: PreviewProvider {
-//
-//  static var previews: some View {
-//    Group {
-//      DrawingView(isShowDrawingView: .constant(true))
-//    }
-//  }
-//}
+struct DrawingView_Previews: PreviewProvider {
+
+  static var previews: some View {
+    Group {
+      DrawingView()
+        .environmentObject(DiaryViewModel())
+    }
+  }
+}
