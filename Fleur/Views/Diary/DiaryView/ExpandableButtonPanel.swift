@@ -38,15 +38,19 @@ struct ExpandableButtonPanel: View {
 //      .clipShape(Capsule())
       
       // button
+      // https://stackoverflow.com/questions/59012083/how-to-increase-tappable-area-of-navigationbaritem-in-swiftui
+      // how to increase tappable area
       VStack {
         if isExpanded {
           ForEach(expandedButtons) { button in
             Button {
               button.action?()
             } label: {
-              button.label.modifier(ButtonImageDesign())
+              button.label
+                .modifier(ButtonImageDesign(color: .black))
+                .frame(width: size, height: size)
             }
-            .frame(width: size, height: size)
+//            .frame(width: size, height: size)
             
           }
         }
@@ -57,13 +61,12 @@ struct ExpandableButtonPanel: View {
             isExpanded.toggle()
           }
         } label: {
-          primaryButton.label.modifier(ButtonImageDesign())
+          primaryButton.label
+            .modifier(ButtonImageDesign(color: .black))
+            .frame(width: size, height: size)
         }
-        .frame(width: size, height: size)
-//        .padding()
+//        .frame(width: size, height: size)
       }
-      .background(Color.clear)
-      .clipShape(Capsule())
       
     }
   }
@@ -74,10 +77,6 @@ struct ExpandableButtonItem: Identifiable {
   let id = UUID()
   let label: Image
   let action: (() -> Void)?
-  
-  var image: ModifiedContent<Image, ButtonImageDesign> {
-    get { label.modifier(ButtonImageDesign()) }
-  }
   
   init (label: Image, action: (() -> Void)? = nil) {
     self.label = label

@@ -34,9 +34,11 @@ struct DiaryRowView: View {
     else if content.text != nil {
       ZStack {
         TextEditor(text: $text)
-        Text(text)
-          .opacity(0)
-          .padding(.all, 8)
+          .tint(.principal)
+//          .focused($isTextEditorFocused)
+//        Text(text)
+//          .opacity(0)
+//          .padding(.all, 8)
       }
     }
     

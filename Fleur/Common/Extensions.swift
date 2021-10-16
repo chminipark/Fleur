@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK:- Color
+// MARK: - Color
 // hex값 -> Color로 변환
 extension Color {
   init(hex: String) {
@@ -28,9 +28,11 @@ extension Color {
 // hex로 만든 Color값들..
 extension Color {
   static let bgColor = Color(hex: "#D4CCBC")
+  static let principal = Color(hex: "#771011")
+  static let honeydew = Color(hex: "#F0FFF0")
 }
 
-// MARK:- UIColor
+// MARK: - UIColor
 extension UIColor {
   static func hexStringToUIColor(alpha: CGFloat = 1.0, hex: String) -> UIColor {
     let scanner = Scanner(string: hex)

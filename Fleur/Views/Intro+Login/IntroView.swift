@@ -18,29 +18,30 @@ struct IntroView: View {
   var body: some View {
     
     VStack(spacing: 0) {
-      // top
-      HStack(alignment: .center, spacing: 0) {
-        Text("Fleur")
-        //          .frame(maxWidth: .infinity, maxHeight: .infinity)
-      }
-      .frame(height: 50)
-      // line
-      IntroLine()
+//      // top
+//      HStack(alignment: .center, spacing: 0) {
+//        Text("Fleur")
+//        //          .frame(maxWidth: .infinity, maxHeight: .infinity)
+//      }
+//      .frame(height: 50)
+//      // line
+//      IntroLine()
       
       // middle
       MiddleTextAndImageView()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       
       // line
-      IntroLine()
-      // bottom
-      BottomButtonView()
-        .frame(height: 70)
+//      IntroLine()
+//      // bottom
+//      BottomButtonView()
+//        .frame(height: 70)
     }
-    .background(Image("papertexture")
-                  .resizable()
-                  .ignoresSafeArea()
-    )
+//    .background(Image("papertexture")
+//                  .resizable()
+//                  .ignoresSafeArea()
+    .background(Color.bgColor.ignoresSafeArea())
+    
     
   }
 }
@@ -92,14 +93,31 @@ struct MiddleTextAndImageView: View {
   var body: some View {
     GeometryReader { geo in
       ZStack {
-//        RandomImageView(width: geo.size.width/3*2)
-//
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: 0))
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: 0))
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3))
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3))
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3*2))
-//        FloatingText(animationTime: 2, visibleTime: 1, cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3), cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3*2))
+        RandomImageView(width: geo.size.width/2+50)
+
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3-50),
+                     cgPointZero: CGPoint.init(x: 0, y: 0))
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3-50),
+                     cgPointZero: CGPoint.init(x: geo.size.width/2, y: 0))
+        
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width-40, height: (geo.size.height/3+50+50)/3*2,
+                     cgPointZero: CGPoint.init(x: 40/2, y: geo.size.height/3-50)))
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: (geo.size.height/3+50+50)/3,
+                     cgPointZero: CGPoint.init(x: 0, y: (geo.size.height/3-50)+(geo.size.height/3+50+50)/3*2)))
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: (geo.size.height/3+50+50)/3,
+                     cgPointZero: CGPoint.init(x: geo.size.width/2, y: (geo.size.height/3-50)+(geo.size.height/3+50+50)/3*2)))
+        
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3-50),
+                     cgPointZero: CGPoint.init(x: 0, y: geo.size.height/3*2+50))
+        FloatingText(animationTime: 2, visibleTime: 1,
+                     cgSize: CGSize.init(width: geo.size.width/2, height: geo.size.height/3-50),
+                     cgPointZero: CGPoint.init(x: geo.size.width/2, y: geo.size.height/3*2+50))
         
       }
     }
@@ -117,7 +135,7 @@ struct MiddleTextAndImageView: View {
 
 struct RandomImageView: View {
   
-  static var width: CGFloat = 200
+  static var width: CGFloat = 150
   static var height: CGFloat = width * 1.618
   
   @State var visible = false

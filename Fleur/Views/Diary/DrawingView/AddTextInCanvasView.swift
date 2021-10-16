@@ -16,20 +16,24 @@ struct AddTextInCanvasView: View {
     VStack {
       HStack {
         Button {
-          diaryViewModel.addTextInCanvas(text: text)
           diaryViewModel.isShowAddTextInCanvasView.toggle()
         } label: {
-          Text("추가")
+          Image(systemName: "chevron.backward")
+            .modifier(ButtonImageDesign(color: .honeydew))
         }
-        
+
         Spacer()
         
         Button {
+          diaryViewModel.addTextInCanvas(text: text)
           diaryViewModel.isShowAddTextInCanvasView.toggle()
         } label: {
-          Text("취소")
+          Image(systemName: "square.and.arrow.down")
+            .modifier(ButtonImageDesign(color: .honeydew))
         }
       }
+      .padding()
+      .frame(height: 45)
       
       Spacer()
       
@@ -37,10 +41,16 @@ struct AddTextInCanvasView: View {
         .padding()
         .colorScheme(.dark)
         .foregroundColor(.white)
+        .padding([.leading, .trailing], 40)
+        .multilineTextAlignment(.center)
       
       Spacer()
+      
+      Rectangle()
+        .foregroundColor(.clear)
+        .frame(height: 45)
     }
-    .background(Color.black.opacity(0.6).ignoresSafeArea())
+    .background(Color.black.opacity(0.4).ignoresSafeArea())
     
   }
 }

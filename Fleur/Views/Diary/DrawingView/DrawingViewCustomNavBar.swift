@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct DrawingViewCustomNavBar: View {
-  
+
   @EnvironmentObject var diaryViewModel: DiaryViewModel
-  
+
   var body: some View {
     HStack {
-      
+
       Button(action: {
         diaryViewModel.isShowDrawingView.toggle()
       }, label: {
         Image(systemName: "chevron.backward")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       })
-      
+
       Spacer()
-      
+
       Button(action: {
         diaryViewModel.saveImage()
         diaryViewModel.isShowDrawingView.toggle()
       }, label: {
         Image(systemName: "square.and.arrow.down")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       })
-      
+
     }
     .padding()
     .frame(height: 45)

@@ -9,18 +9,21 @@ import SwiftUI
 import PencilKit
 
 class DiaryViewModel: ObservableObject {
-  // MARK:- DiaryView
+  // MARK: - DiaryView
   @Published var contents: [DiaryContent] = []
+  @Published var isEditMode = false
   
   func addContentText() {
-    contents.append(DiaryContent(text: nil, photo: UIImage(named: "1")))
-  }
-  
-  func addContentImage() {
+//    contents.append(DiaryContent(text: nil, photo: UIImage(named: "1")))
     contents.append(DiaryContent(text: "", photo: nil))
+    
   }
   
-  // MARK:- DrawingView
+//  func addContentImage() {
+//    contents.append(DiaryContent(text: "", photo: nil))
+//  }
+  
+  // MARK: - DrawingView
   
   @Published var canvas = PKCanvasView()
   @Published var isShowDrawingView = false
@@ -64,7 +67,7 @@ class DiaryViewModel: ObservableObject {
     }
   }
   
-  // MARK:- ImagePickerView
+  // MARK: - ImagePickerView
   @Published var isShowImgPicker: Bool = false
   @Published var imageData: Data = Data(count: 0)
   
@@ -73,7 +76,7 @@ class DiaryViewModel: ObservableObject {
 //    canvas = PKCanvasView()
   }
   
-  // MARK:- AddTextInCanvasView
+  // MARK: - AddTextInCanvasView
   @Published var textBoxes: [TextBox] = []
   @Published var isShowAddTextInCanvasView: Bool = false
   

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PencilKit
 
 struct DrawingViewCustomToolBar: View {
   
@@ -14,10 +15,12 @@ struct DrawingViewCustomToolBar: View {
   var body: some View {
     HStack {
       Button {
-        diaryViewModel.isShowImgPicker.toggle()
+        diaryViewModel.canvas.drawing = PKDrawing()
+        diaryViewModel.textBoxes.removeAll()
+        diaryViewModel.imageData = Data(count: 0)
       } label: {
         Image(systemName: "xmark.circle")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       }
       
       Spacer()
@@ -26,7 +29,7 @@ struct DrawingViewCustomToolBar: View {
         diaryViewModel.isShowImgPicker.toggle()
       } label: {
         Image(systemName: "photo")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       }
       
       Spacer()
@@ -35,7 +38,7 @@ struct DrawingViewCustomToolBar: View {
         diaryViewModel.isShowAddTextInCanvasView.toggle()
       } label: {
         Image(systemName: "textformat.abc")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       }
       
       Spacer()
@@ -44,7 +47,7 @@ struct DrawingViewCustomToolBar: View {
         print(#fileID, #function, #line)
       } label: {
         Image(systemName: "pencil.tip.crop.circle")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .honeydew))
       }
     }
     .padding()

@@ -13,6 +13,7 @@ struct DrawingView: View {
 
   @EnvironmentObject var diaryViewModel: DiaryViewModel
   
+  
   //  @State var isShowAddTextView = false
   
   // [textBox]에서 맞는 index 가져오기
@@ -36,13 +37,16 @@ struct DrawingView: View {
       
       return AnyView (
         ZStack {
-          Color.black.opacity(0.2).ignoresSafeArea()
+          Color.black.opacity(0.3).ignoresSafeArea()
           
           VStack {
+            // CustomNavBar
             DrawingViewCustomNavBar()
+              .opacity(diaryViewModel.isShowAddTextInCanvasView ? 0 : 1)
             
             Spacer()
             
+            // DrawingPanel
             ZStack {
               // Canvas Background Image
               if let image = UIImage(data: diaryViewModel.imageData) {
@@ -89,6 +93,7 @@ struct DrawingView: View {
             Spacer()
             
             DrawingViewCustomToolBar()
+              .opacity(diaryViewModel.isShowAddTextInCanvasView ? 0 : 1)
           }
         } // ZStack
 //        .toolbar {

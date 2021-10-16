@@ -9,25 +9,31 @@ import SwiftUI
 
 // MARK: - DiaryViewCustomNavBar
 struct DiaryViewCustomNavBar: View {
+
+  @EnvironmentObject var diaryViewModel: DiaryViewModel
+
+  // Custom navigationBarBackButton
+  @Environment(\.presentationMode) var presentationMode
+  
   var body: some View {
     HStack {
-      
+
       Button(action: {
-        print(#fileID, #function, #line)
+        presentationMode.wrappedValue.dismiss()
       }, label: {
         Image(systemName: "chevron.backward")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .black))
       })
-      
+
       Spacer()
-      
+
       Button(action: {
         print(#fileID, #function, #line)
       }, label: {
         Image(systemName: "square.and.arrow.down")
-          .modifier(ButtonImageDesign())
+          .modifier(ButtonImageDesign(color: .black))
       })
-      
+
     }
     .padding()
     .frame(height: 45)
