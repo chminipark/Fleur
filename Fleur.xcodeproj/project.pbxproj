@@ -30,6 +30,8 @@
 		BD6332CC27130825005AAB1D /* DrawingViewCustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6332CB27130825005AAB1D /* DrawingViewCustomToolBar.swift */; };
 		BD6332CE27130856005AAB1D /* DrawingViewCustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6332CD27130856005AAB1D /* DrawingViewCustomNavBar.swift */; };
 		BD8CF1FB2705DB5100A20077 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8CF1FA2705DB5100A20077 /* ViewModifiers.swift */; };
+		BDE03CF7271C534600142326 /* FloatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE03CF6271C534600142326 /* FloatingText.swift */; };
+		BDE03CF9271C540600142326 /* RandomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE03CF8271C540600142326 /* RandomImage.swift */; };
 		BDE3327927069F3F00AE88D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE3327827069F3F00AE88D7 /* Extensions.swift */; };
 		BDE3327B27074D1A00AE88D7 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE3327A27074D1A00AE88D7 /* TextBox.swift */; };
 		BDEA946226CBF36500DB43FB /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA946126CBF36500DB43FB /* DiaryView.swift */; };
@@ -68,6 +70,8 @@
 		BD6332CB27130825005AAB1D /* DrawingViewCustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewCustomToolBar.swift; sourceTree = "<group>"; };
 		BD6332CD27130856005AAB1D /* DrawingViewCustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewCustomNavBar.swift; sourceTree = "<group>"; };
 		BD8CF1FA2705DB5100A20077 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		BDE03CF6271C534600142326 /* FloatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingText.swift; sourceTree = "<group>"; };
+		BDE03CF8271C540600142326 /* RandomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImage.swift; sourceTree = "<group>"; };
 		BDE3327827069F3F00AE88D7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BDE3327A27074D1A00AE88D7 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
 		BDEA946126CBF36500DB43FB /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
@@ -137,14 +141,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BD19C27A26C2AC0D00B094B9 /* Intro+Login */ = {
+		BD19C27A26C2AC0D00B094B9 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
 				BD19C28326C2ADCB00B094B9 /* IntroView.swift */,
-				BDEAA3B326F0A11B0089BB9A /* LoginView.swift */,
-				BD03EDBD26C4EE330067249D /* RegisterView.swift */,
+				BDE03CF6271C534600142326 /* FloatingText.swift */,
+				BDE03CF8271C540600142326 /* RandomImage.swift */,
 			);
-			path = "Intro+Login";
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		BD1AC1922700A3F9006CBAC5 /* Diary */ = {
@@ -200,13 +204,23 @@
 			path = DrawingView;
 			sourceTree = "<group>";
 		};
+		BDE03CFA271C54CC00142326 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BDEAA3B326F0A11B0089BB9A /* LoginView.swift */,
+				BD03EDBD26C4EE330067249D /* RegisterView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		BDEA945C26CBF01600DB43FB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD1AC1922700A3F9006CBAC5 /* Diary */,
+				BD19C27A26C2AC0D00B094B9 /* Intro */,
+				BDE03CFA271C54CC00142326 /* Login */,
 				BD19C26D26C2AA5300B094B9 /* ContentView.swift */,
 				BDEA946326CC019D00DB43FB /* HashTagView.swift */,
-				BD1AC1922700A3F9006CBAC5 /* Diary */,
-				BD19C27A26C2AC0D00B094B9 /* Intro+Login */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,6 +388,7 @@
 				BD5D7119271177270002CD28 /* ExpandableButtonPanel.swift in Sources */,
 				BD5E8F3E26FB45F9008C94FA /* DrawingViewModel.swift in Sources */,
 				BDE3327927069F3F00AE88D7 /* Extensions.swift in Sources */,
+				BDE03CF9271C540600142326 /* RandomImage.swift in Sources */,
 				BD1AC1B72701B509006CBAC5 /* DiaryViewModel.swift in Sources */,
 				BD6332CC27130825005AAB1D /* DrawingViewCustomToolBar.swift in Sources */,
 				BDEA946226CBF36500DB43FB /* DiaryView.swift in Sources */,
@@ -387,6 +402,7 @@
 				BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */,
 				BD5E8F3C26FB4422008C94FA /* ImagePickerView.swift in Sources */,
 				BDE3327B27074D1A00AE88D7 /* TextBox.swift in Sources */,
+				BDE03CF7271C534600142326 /* FloatingText.swift in Sources */,
 				BDEAA3B426F0A11B0089BB9A /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
