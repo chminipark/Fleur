@@ -13,33 +13,85 @@ import SwiftUI
 // MARK: Main View
 struct IntroView: View {
   
-  @State var isPresented1: Bool = false
+  @State private var isShowButton = true
+  @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+  @State private var time: Double = 0
+  
+  let animationTime: Double
+  let visibleTime: Double
+    
+  init(animationTime: Double, visibleTime: Double) {
+    self.animationTime = animationTime
+    self.visibleTime = visibleTime
+    
+//    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+  }
   
   var body: some View {
     
     VStack(spacing: 0) {
-      //      // top
-      //      HStack(alignment: .center, spacing: 0) {
-      //        Text("Fleur")
-      //        //          .frame(maxWidth: .infinity, maxHeight: .infinity)
-      //      }
-      //      .frame(height: 50)
-      //      // line
-      //      IntroLine()
+      // top
+      VStack(alignment: .center, spacing: 0) {
+        Text("Fleur")
+          .foregroundColor(.black)
+          .font(.system(size: 30))
+          .frame(height: 45)
+        // line
+        IntroLine()
+      }
+      .opacity(isShowButton ? 1 : 0)
+      .animation(.easeInOut(duration: animationTime), value: isShowButton)
       
       // middle
       MiddleTextAndImageView()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       
-      // line
-      //      IntroLine()
-      //      // bottom
-      //      BottomButtonView()
-      //        .frame(height: 70)
+      // Bottom
+      VStack(alignment: .center, spacing: 0) {
+        // line
+        IntroLine()
+        // bottom
+        BottomButtonView()
+          .frame(height: 45)
+      }
+      .opacity(isShowButton ? 1 : 0)
+      .animation(.easeInOut(duration: animationTime), value: isShowButton)
+//      .onReceive(timer) { _ in
+//        time += 1
+//        print(time)
+//        if time == (animationTime+visibleTime) {
+//          isShowButton.toggle()
+//          timerCancel()
+//        }
+//      }
+      
     }
     .background(Color.bgColor.ignoresSafeArea())
+    .onTapGesture {
+      isShowButton.toggle()
+      time = 0
+      timerStart()
+    }
+    .onReceive(timer) { _ in
+      time += 1
+      print(time)
+      if time == (animationTime+visibleTime) {
+        isShowButton.toggle()
+        timerCancel()
+        print(isShowButton)
+        print(time)
+      }
+    }
     
     
+  }// body
+  
+  func timerCancel() {
+    timer.upstream.connect().cancel()
+  }
+  
+  func timerStart() {
+    timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   }
 }
 
@@ -64,7 +116,8 @@ struct MiddleTextAndImageView: View {
       
       return AnyView(
         ZStack {
-          RandomImage(width: width/5*3, visibleTime: 5, invisibleTime: 1.5, animationTime: 4)
+          
+          RandomImage(width: width/5*3, visibleTime: 8, invisibleTime: 1.5, animationTime: 4)
           
           VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -73,7 +126,7 @@ struct MiddleTextAndImageView: View {
             }
             .frame(maxHeight: .infinity)
             VStack(spacing: 0) {
-              FloatingText(animationTime: 3.2, visibleTime: 2, textColor: .white)
+              FloatingText(animationTime: 3.2, visibleTime: 2.3, textColor: .white)
                 .frame(width: width-(middleplus*2), height: ((height/3)+(middleplus))/2+(middleplus))
               HStack(spacing: 0) {
                 FloatingText(animationTime: 2.6)
@@ -82,7 +135,7 @@ struct MiddleTextAndImageView: View {
             }
             .frame(height: (height/3)+(middleplus))
             HStack(spacing: 0) {
-              FloatingText(animationTime: 3.3, visibleTime: 1.7)
+              FloatingText(animationTime: 3.1, visibleTime: 1.7)
                 .frame(width: (width/2)+(middleplus))
               FloatingText(animationTime: 3)
                 .frame(maxWidth: .infinity)
@@ -97,12 +150,6 @@ struct MiddleTextAndImageView: View {
 }
 
 
-
-
-
-
-
-
 struct BottomButtonView: View {
   
   @State var showRegisterSheet: Bool = false
@@ -112,33 +159,77 @@ struct BottomButtonView: View {
     
     HStack(alignment: .center, spacing: 0) {
       
-      Button("Login") {
+      Button {
         showLoginSheet.toggle()
+      } label: {
+        Text("Login")
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .foregroundColor(.black)
       }
       .sheet(isPresented: $showLoginSheet) {
         LoginView()
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
-      .foregroundColor(.black)
-      
+                  
       Rectangle()
         .foregroundColor(Color.black)
         .frame(width: Constants.Intro.border)
         .frame(maxHeight: .infinity)
       
-      Button("Register") {
+      Button {
         showRegisterSheet.toggle()
+      } label: {
+        Text("Register")
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .foregroundColor(.black)
       }
       .sheet(isPresented: $showRegisterSheet) {
         RegisterView()
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
-      .foregroundColor(.black)
-      
+                  
     }
-    
   }
 }
+
+
+
+
+
+//struct BottomButtonView: View {
+//
+//  @State var showRegisterSheet: Bool = false
+//  @State var showLoginSheet: Bool = false
+//
+//  var body: some View {
+//
+//    HStack(alignment: .center, spacing: 0) {
+//
+//      Button("Login") {
+//        showLoginSheet.toggle()
+//      }
+//      .sheet(isPresented: $showLoginSheet) {
+//        LoginView()
+//      }
+//      .frame(maxWidth: .infinity, maxHeight: .infinity)
+//      .foregroundColor(.black)
+//
+//      Rectangle()
+//        .foregroundColor(Color.black)
+//        .frame(width: Constants.Intro.border)
+//        .frame(maxHeight: .infinity)
+//
+//      Button("Register") {
+//        showRegisterSheet.toggle()
+//      }
+//      .sheet(isPresented: $showRegisterSheet) {
+//        RegisterView()
+//      }
+//      .frame(maxWidth: .infinity, maxHeight: .infinity)
+//      .foregroundColor(.black)
+//
+//    }
+//
+//  }
+//}
 
 
 
@@ -162,8 +253,8 @@ class dummyData {
 }
 
 
-struct IntroView_Previews: PreviewProvider {
-  static var previews: some View {
-    IntroView()
-  }
-}
+//struct IntroView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    IntroView()
+//  }
+//}

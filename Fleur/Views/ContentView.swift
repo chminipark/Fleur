@@ -14,9 +14,9 @@ struct ContentView: View {
   var body: some View {
     ZStack{
       if fbAuth.signedIn {
-        HashTagView()
+        FeedView()
       } else {
-        IntroView()
+        IntroView(animationTime: 2, visibleTime: 8)
       }
     }
     .onAppear {

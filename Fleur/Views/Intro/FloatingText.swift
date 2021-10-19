@@ -21,7 +21,7 @@ struct FloatingText: View {
   
   var timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
   
-  init(animationTime: Double, visibleTime: Double = 1.3, invisibleTime: Double = 1, textColor: Color = .black) {
+  init(animationTime: Double, visibleTime: Double = 1.5, invisibleTime: Double = 1, textColor: Color = .black) {
     self.visibleTime = visibleTime
     self.invisibleTime = invisibleTime
     self.animationTime = animationTime
