@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD03EDBD26C4EE330067249D /* RegisterView.swift */; };
 		BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26B26C2AA5300B094B9 /* FleurApp.swift */; };
-		BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26D26C2AA5300B094B9 /* ContentView.swift */; };
+		BD19C26E26C2AA5300B094B9 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26D26C2AA5300B094B9 /* StartView.swift */; };
 		BD19C27026C2AA5600B094B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C26F26C2AA5600B094B9 /* Assets.xcassets */; };
 		BD19C27326C2AA5600B094B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */; };
 		BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C28326C2ADCB00B094B9 /* IntroView.swift */; };
@@ -32,6 +32,10 @@
 		BD6BFA11271EA8B200FC0247 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6BFA10271EA8B200FC0247 /* FeedView.swift */; };
 		BD6BFA13271EBC1C00FC0247 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6BFA12271EBC1C00FC0247 /* FeedViewModel.swift */; };
 		BD6BFA16271EBCDF00FC0247 /* FeedViewCustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6BFA15271EBCDF00FC0247 /* FeedViewCustomNavBar.swift */; };
+		BD6FD9B8272257AA008D0160 /* layout1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6FD9B7272257AA008D0160 /* layout1.swift */; };
+		BD6FD9BA27226DCD008D0160 /* layout2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6FD9B927226DCD008D0160 /* layout2.swift */; };
+		BD6FD9BE27226EBD008D0160 /* layout3.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6FD9BD27226EBD008D0160 /* layout3.swift */; };
+		BD6FD9C227228335008D0160 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6FD9C127228335008D0160 /* Card.swift */; };
 		BD8CF1FB2705DB5100A20077 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8CF1FA2705DB5100A20077 /* ViewModifiers.swift */; };
 		BDE03CF7271C534600142326 /* FloatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE03CF6271C534600142326 /* FloatingText.swift */; };
 		BDE03CF9271C540600142326 /* RandomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE03CF8271C540600142326 /* RandomImage.swift */; };
@@ -51,7 +55,7 @@
 		BD03EDBD26C4EE330067249D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		BD19C26826C2AA5300B094B9 /* Fleur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD19C26B26C2AA5300B094B9 /* FleurApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleurApp.swift; sourceTree = "<group>"; };
-		BD19C26D26C2AA5300B094B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BD19C26D26C2AA5300B094B9 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		BD19C26F26C2AA5600B094B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BD19C27426C2AA5600B094B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +79,10 @@
 		BD6BFA10271EA8B200FC0247 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		BD6BFA12271EBC1C00FC0247 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BD6BFA15271EBCDF00FC0247 /* FeedViewCustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewCustomNavBar.swift; sourceTree = "<group>"; };
+		BD6FD9B7272257AA008D0160 /* layout1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layout1.swift; sourceTree = "<group>"; };
+		BD6FD9B927226DCD008D0160 /* layout2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layout2.swift; sourceTree = "<group>"; };
+		BD6FD9BD27226EBD008D0160 /* layout3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layout3.swift; sourceTree = "<group>"; };
+		BD6FD9C127228335008D0160 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		BD8CF1FA2705DB5100A20077 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		BDE03CF6271C534600142326 /* FloatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingText.swift; sourceTree = "<group>"; };
 		BDE03CF8271C540600142326 /* RandomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImage.swift; sourceTree = "<group>"; };
@@ -215,6 +223,9 @@
 			children = (
 				BD6BFA10271EA8B200FC0247 /* FeedView.swift */,
 				BD6BFA15271EBCDF00FC0247 /* FeedViewCustomNavBar.swift */,
+				BD6FD9B7272257AA008D0160 /* layout1.swift */,
+				BD6FD9B927226DCD008D0160 /* layout2.swift */,
+				BD6FD9BD27226EBD008D0160 /* layout3.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -235,7 +246,7 @@
 				BD1AC1922700A3F9006CBAC5 /* Diary */,
 				BD19C27A26C2AC0D00B094B9 /* Intro */,
 				BDE03CFA271C54CC00142326 /* Login */,
-				BD19C26D26C2AA5300B094B9 /* ContentView.swift */,
+				BD19C26D26C2AA5300B094B9 /* StartView.swift */,
 				BDEA946326CC019D00DB43FB /* HashTagView.swift */,
 			);
 			path = Views;
@@ -257,6 +268,7 @@
 			children = (
 				BD1AC1B42701A20D006CBAC5 /* DiaryData.swift */,
 				BDE3327A27074D1A00AE88D7 /* TextBox.swift */,
+				BD6FD9C127228335008D0160 /* Card.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +407,7 @@
 			files = (
 				BD2E2E9926F0DE07009F9FD7 /* FBAuth.swift in Sources */,
 				BD5D711C2711781D0002CD28 /* DiaryViewCustomNavBar.swift in Sources */,
+				BD6FD9C227228335008D0160 /* Card.swift in Sources */,
 				BD460E9727130BB30048724B /* CanvasView.swift in Sources */,
 				BD8CF1FB2705DB5100A20077 /* ViewModifiers.swift in Sources */,
 				BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */,
@@ -408,6 +421,7 @@
 				BDE3327927069F3F00AE88D7 /* Extensions.swift in Sources */,
 				BDE03CF9271C540600142326 /* RandomImage.swift in Sources */,
 				BD1AC1B72701B509006CBAC5 /* DiaryViewModel.swift in Sources */,
+				BD6FD9BE27226EBD008D0160 /* layout3.swift in Sources */,
 				BD6332CC27130825005AAB1D /* DrawingViewCustomToolBar.swift in Sources */,
 				BDEA946226CBF36500DB43FB /* DiaryView.swift in Sources */,
 				BD5E8F4026FB491F008C94FA /* DrawingView.swift in Sources */,
@@ -415,12 +429,14 @@
 				BD1AC1B52701A20D006CBAC5 /* DiaryData.swift in Sources */,
 				BD1AC19127007968006CBAC5 /* MemoView.swift in Sources */,
 				BD6BFA13271EBC1C00FC0247 /* FeedViewModel.swift in Sources */,
-				BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */,
+				BD19C26E26C2AA5300B094B9 /* StartView.swift in Sources */,
+				BD6FD9B8272257AA008D0160 /* layout1.swift in Sources */,
 				BD6BFA11271EA8B200FC0247 /* FeedView.swift in Sources */,
 				BD460E9527130B760048724B /* AddTextInCanvasView.swift in Sources */,
 				BD5D711E2711784B0002CD28 /* DiaryRowView.swift in Sources */,
 				BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */,
 				BD5E8F3C26FB4422008C94FA /* ImagePickerView.swift in Sources */,
+				BD6FD9BA27226DCD008D0160 /* layout2.swift in Sources */,
 				BDE3327B27074D1A00AE88D7 /* TextBox.swift in Sources */,
 				BDE03CF7271C534600142326 /* FloatingText.swift in Sources */,
 				BDEAA3B426F0A11B0089BB9A /* LoginView.swift in Sources */,

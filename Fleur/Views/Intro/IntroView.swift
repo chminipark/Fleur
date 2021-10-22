@@ -245,7 +245,7 @@ class dummyData {
   
   static let ImageArray: [String] = {
     var a = [String]()
-    for i in stride(from: 1, through: 15, by: 1) {
+    for i in stride(from: 1, through: 14, by: 1) {
       a.append(String(i))
     }
     return a

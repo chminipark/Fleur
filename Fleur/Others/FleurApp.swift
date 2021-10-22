@@ -17,7 +17,7 @@ struct FleurApp: App {
     WindowGroup {
       
       // environmentObject
-      ContentView()
+      StartView()
         .environmentObject(FBAuth())
         
     }

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  StartView.swift
 //  Fleur
 //
 //  Created by minii on 2021/08/10.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StartView: View {
   
   @EnvironmentObject var fbAuth: FBAuth
   
   var body: some View {
     ZStack{
       if fbAuth.signedIn {
-        FeedView()
+        HashTagView()
       } else {
         IntroView(animationTime: 2, visibleTime: 8)
       }
@@ -27,8 +27,8 @@ struct ContentView: View {
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct StartView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    StartView()
   }
 }
