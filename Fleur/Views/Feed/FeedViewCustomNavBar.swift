@@ -6,43 +6,38 @@
 //
 
 import SwiftUI
+import RealmSwift
+
 
 // MARK: - FeedViewCustomNavBar
 struct FeedViewCustomNavBar: View {
-
-//  @EnvironmentObject var diaryViewModel: DiaryViewModel
-
-  // Custom navigationBarBackButton
-//  @Environment(\.presentationMode) var presentationMode
-
-  @EnvironmentObject var fbAuth: FBAuth
   
   var body: some View {
     HStack {
 
       Button(action: {
-//        presentationMode.wrappedValue.dismiss()
-        fbAuth.signOut()
+        print("#file: \(#file), #function: \(#function), #line: \(#line)")
       }, label: {
         Image(systemName: "line.horizontal.3.circle")
           .modifier(ButtonImageDesign(color: .black))
       })
 
       Spacer()
-
+      
       Button(action: {
-        print(#fileID, #function, #line)
+        print("#file: \(#file), #function: \(#function), #line: \(#line)")
       }, label: {
         Image(systemName: "magnifyingglass")
           .modifier(ButtonImageDesign(color: .black))
       })
       
-      Button(action: {
-        print(#fileID, #function, #line)
-      }, label: {
+      NavigationLink {
+//        DiaryView(contentList: Array(DiaryMock.diary1.contents))
+        DiaryView(diaryData: Diary.init(diaryDB: DiaryDB()))
+      } label: {
         Image(systemName: "square.and.pencil")
           .modifier(ButtonImageDesign(color: .black))
-      })
+      }
 
     }
     .padding()

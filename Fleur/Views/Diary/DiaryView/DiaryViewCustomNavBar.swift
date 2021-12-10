@@ -10,8 +10,10 @@ import SwiftUI
 // MARK: - DiaryViewCustomNavBar
 struct DiaryViewCustomNavBar: View {
 
-  @EnvironmentObject var diaryViewModel: DiaryViewModel
+//  @EnvironmentObject var diaryViewModel: DiaryViewModel
 
+  let date: String
+  
   // Custom navigationBarBackButton
   @Environment(\.presentationMode) var presentationMode
   
@@ -26,6 +28,10 @@ struct DiaryViewCustomNavBar: View {
       })
 
       Spacer()
+      
+      Text(date)
+      
+      Spacer()
 
       Button(action: {
         print(#fileID, #function, #line)
@@ -39,3 +45,4 @@ struct DiaryViewCustomNavBar: View {
     .frame(height: 45)
   }
 }
+

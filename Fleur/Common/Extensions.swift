@@ -52,3 +52,13 @@ extension UIColor {
 extension UIColor {
   static let bgColor = UIColor.hexStringToUIColor(hex: "#D4CCBC")
 }
+
+
+// MARK: - DateFormatter
+extension DateFormatter {
+  static let customFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.dateFormat = "yyyy년 MM월 dd일"
+    return df
+  }()
+}

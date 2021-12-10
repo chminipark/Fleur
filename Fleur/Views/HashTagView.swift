@@ -49,7 +49,6 @@ struct SearchBar: View {
   
   @State var isSearch = false
   @Binding var searchText: String
-  @EnvironmentObject var fbAuth: FBAuth
   
   var body: some View {
     
@@ -96,7 +95,7 @@ struct SearchBar: View {
         Button(action: {
           withAnimation(.easeOut) {
             isSearch.toggle()
-            fbAuth.signOut()
+//            fbAuth.signOut()
           }
         }, label: {
           Image(systemName: "magnifyingglass")
@@ -104,13 +103,13 @@ struct SearchBar: View {
             .foregroundColor(.black)
         })
         
-        NavigationLink(
-          destination: DiaryView(),
-          label: {
-            Image(systemName: "pencil.tip.crop.circle")
-              .font(.system(size: 20, weight: .bold))
-              .foregroundColor(.black)
-          })
+//        NavigationLink(
+//          destination: DiaryView(),
+//          label: {
+//            Image(systemName: "pencil.tip.crop.circle")
+//              .font(.system(size: 20, weight: .bold))
+//              .foregroundColor(.black)
+//          })
       }
       .padding(.top, 20)
       .padding(.bottom, 10)

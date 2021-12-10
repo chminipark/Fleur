@@ -9,19 +9,29 @@ import SwiftUI
 
 struct StartView: View {
   
-  @EnvironmentObject var fbAuth: FBAuth
+//  @StateObject var feedViewModel = FeedViewModel()
+  
+  @EnvironmentObject var diaryDBManager: DiaryDBManager
   
   var body: some View {
-    ZStack{
-      if fbAuth.signedIn {
-        HashTagView()
-      } else {
-        IntroView(animationTime: 2, visibleTime: 8)
-      }
-    }
-    .onAppear {
-      fbAuth.signedIn = fbAuth.isSignedIn
-    }
+    
+//    FeedView(dataDiary: feedViewModel.dataDiary)
+//    FeedView(dataDiary: feedViewModel.dataDiary)
+    FeedView(dataDiary: diaryDBManager.dataDiary)
+//    FeedView(dataDiary: [])
+    
+    
+//    ZStack{
+//      if fbAuth.signedIn {
+////        HashTagView()
+//        FeedView()
+//      } else {
+//        IntroView(animationTime: 2, visibleTime: 8)
+//      }
+//    }
+//    .onAppear {
+//      fbAuth.signedIn = fbAuth.isSignedIn
+//    }
     
     
   }

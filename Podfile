@@ -6,8 +6,6 @@ target 'Fleur' do
   use_frameworks!
 
   # Pods for Fleur
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-
+  pod 'RealmSwift'
 
 end

@@ -13,44 +13,53 @@ struct DiaryView: View {
   @StateObject var diaryViewModel = DiaryViewModel()
   
   @State private var isEditMode = false
-//  @State private var isAddTextEditor = false
+  //  @State private var isAddTextEditor = false
   
   @FocusState private var focusOnLastContent: Int?
   
-  init() {
+//  var contentList: [_DiaryContent]
+  
+  let dataDiary: Diary
+  
+  init(diaryData: Diary) {
     //    UINavigationBar.appearance().barTintColor = .clear
     //    UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//    self.contentList = contentList
+    self.dataDiary = diaryData
+    print(diaryData)
     UITableView.appearance().backgroundColor = UIColor.bgColor
   }
   
-//  private func getIndex(content: DiaryContent) -> Int {
-//    let index = diaryViewModel.contents.firstIndex { (data) -> Bool in
-//      return data.id == content.id
-//    } ?? 0
-//    return index
-//  }
+  //  private func getIndex(content: DiaryContent) -> Int {
+  //    let index = diaryViewModel.contents.firstIndex { (data) -> Bool in
+  //      return data.id == content.id
+  //    } ?? 0
+  //    return index
+  //  }
   
   var body: some View {
     VStack {
       // MARK: CustomNavBar
-      DiaryViewCustomNavBar()
+//      DiaryViewCustomNavBar()
+      DiaryViewCustomNavBar(date: dataDiary.date)
         .opacity(diaryViewModel.isShowDrawingView ? 0 : 1)
-            
+      
       ZStack {
         // MARK: List
         List {
-          ForEach(diaryViewModel.contents.indices, id: \.self) { index in
-            DiaryRowView(content: diaryViewModel.contents[index])
+          ForEach(dataDiary.contents.indices, id: \.self) { index in
+            DiaryRowView(content: dataDiary.contents[index])
+              .frame(height: 200)
             
               .focused($focusOnLastContent, equals: index)
-//              .onChange(of: isAddTextEditor) { _ in
-//                
-//                
-//              }
-              
+            //              .onChange(of: isAddTextEditor) { _ in
+            //
+            //
+            //              }
+            
           }
-          .onDelete(perform: removeRows)
-          .onMove(perform: moveRows)
+          //          .onDelete(perform: removeRows)
+          //          .onMove(perform: moveRows)
           .listRowBackground(Color.bgColor)
           
           
@@ -85,7 +94,7 @@ struct DiaryView: View {
                   DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
                     focusOnLastContent = diaryViewModel.contents.count-1
                   }
-                                  })
+                })
                 
               ])
             }
@@ -98,22 +107,24 @@ struct DiaryView: View {
     .overlay(
       diaryViewModel.isShowDrawingView ? DrawingView().environmentObject(diaryViewModel) : nil
     )
-    
   } // body
-  
-  func removeRows(at offsets: IndexSet) {
-    diaryViewModel.contents.remove(atOffsets: offsets)
-  }
-  
-  func moveRows(from source: IndexSet, to destination: Int) {
-    diaryViewModel.contents.move(fromOffsets: source, toOffset: destination)
-  }
-} // DiaryView
+}
 
-struct WriteDiaryView_Previews: PreviewProvider {
+// MARK: - Function
+extension DiaryView {
+//  mutating func removeRows(at offsets: IndexSet) {
+//    //    diaryViewModel.contents.remove(atOffsets: offsets)
+//    contentList.remove(atOffsets: offsets)
+//  }
+//
+//  mutating func moveRows(from source: IndexSet, to destination: Int) {
+//    //    diaryViewModel.contents.move(fromOffsets: source, toOffset: destination)
+//    contentList.move(fromOffsets: source, toOffset: destination)
+//  }
+}
+
+struct DiaryView_Previews: PreviewProvider {
   static var previews: some View {
-    Group {
-      DiaryView()
-    }
+    DiaryView(diaryData: Diary.returnDiaryMock()[0])
   }
 }

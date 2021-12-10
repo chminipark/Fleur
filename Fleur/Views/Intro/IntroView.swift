@@ -166,9 +166,9 @@ struct BottomButtonView: View {
           .frame(maxWidth: .infinity, maxHeight: .infinity)
           .foregroundColor(.black)
       }
-      .sheet(isPresented: $showLoginSheet) {
-        LoginView()
-      }
+//      .sheet(isPresented: $showLoginSheet) {
+////        LoginView()
+//      }
                   
       Rectangle()
         .foregroundColor(Color.black)
@@ -182,9 +182,9 @@ struct BottomButtonView: View {
           .frame(maxWidth: .infinity, maxHeight: .infinity)
           .foregroundColor(.black)
       }
-      .sheet(isPresented: $showRegisterSheet) {
-        RegisterView()
-      }
+//      .sheet(isPresented: $showRegisterSheet) {
+//        RegisterView()
+//      }
                   
     }
   }

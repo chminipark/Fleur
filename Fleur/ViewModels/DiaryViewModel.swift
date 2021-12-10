@@ -65,6 +65,8 @@ class DiaryViewModel: ObservableObject {
     if let image = generatedImage {
       contents.append(DiaryContent(text: nil, photo: image))
     }
+    
+    
   }
   
   // MARK: - ImagePickerView

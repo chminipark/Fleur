@@ -28,3 +28,49 @@ struct DiaryContent: Identifiable {
     ]
   }
 }
+
+// MARK: -
+
+
+ 
+
+
+
+//struct _Diary {
+//  var diary: [_DiaryContent]
+//}
+//
+//struct _DiaryContent {
+//  var content: [Date: [Any]]
+//}
+//
+//
+//struct TextData: Identifiable, Hashable {
+//  let id = UUID()
+//  var text: String
+//}
+//
+//struct ImageData: Identifiable, Hashable {
+//  let id = UUID()
+//  var image: UIImage
+//}
+//
+//func getDummyDiaryContent() -> [Any] {
+//  return [
+//    TextData(text: "111111"),
+//    ImageData(image: UIImage(named: "1")!),
+//    ImageData(image: UIImage(named: "1")!),
+//    TextData(text: "222222"),
+//    ImageData(image: UIImage(named: "1")!),
+//    TextData(text: "111111"),
+//    ImageData(image: UIImage(named: "1")!),
+//    ImageData(image: UIImage(named: "1")!),
+//    TextData(text: "222222"),
+//    ImageData(image: UIImage(named: "1")!),
+//    TextData(text: "111111"),
+//    ImageData(image: UIImage(named: "1")!),
+//    ImageData(image: UIImage(named: "1")!),
+//    TextData(text: "222222"),
+//    ImageData(image: UIImage(named: "1")!)
+//  ]
+//}
