@@ -13,11 +13,8 @@ struct FleurApp: SwiftUI.App {
   var body: some Scene {
     WindowGroup {
       
-      // environmentObject
-      StartView()
+      ContentView()
         .environmentObject(DiaryDBManager())
-        
-//        .environmentObject(FBAuth())
         
     }
   }

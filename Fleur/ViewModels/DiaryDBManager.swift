@@ -8,6 +8,8 @@
 import Foundation
 import RealmSwift
 
+
+
 class DiaryDBManager: ObservableObject {
   
   @ObservedResults(DiaryDB.self) var allDiaryDBResults
@@ -19,23 +21,27 @@ class DiaryDBManager: ObservableObject {
 }
 
 extension DiaryDBManager {
-  
-//  func create(type: ContentType, content: Object) {
-//    objectWillChange.send()
-//
-//    let data = _DiaryContent(type: type, content: content)
-//
-//    do {
-//      let realm = try Realm()
-//
-//      try realm.write({
-//
-//      })
-//    } catch let error {
-//      print("#file: \(#file), #function: \(#function), #line: \(#line)")
-//      print(error.localizedDescription)
-//    }
-//  }
+  func saveInDB(id: UInt64?, date: String, contents: [_DiaryContent]) {
 
+    objectWillChange.send()
+
+    do {
+      // save 하는 요부분 효율적으로 다시 짜기...
+      if !contents.isEmpty {
+        let realm = try Realm()
+        let diaryDB = DiaryDB()
+        diaryDB.date = date
+        diaryDB.contents.removeAll()
+        contents.forEach { diaryDB.contents.append($0) }
+        try realm.write {
+          realm.add(diaryDB)
+        }
+      }
+
+    } catch let error {
+      print(error.localizedDescription)
+    }
+  }
+  
   
 }

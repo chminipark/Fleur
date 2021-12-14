@@ -14,12 +14,10 @@ struct CardView: View {
   
   var body: some View {
     if card.type == ContentType.image.rawValue {
-      let content = card.imageContent as! ImageContent
-      ImageCardView(card: content)
+      ImageCardView(card: card.imageContent!)
     }
     else if card.type == ContentType.text.rawValue {
-      let content = card.textContent as! TextContent
-      TextCardView(card: content)
+      TextCardView(card: card.textContent!)
     }
   }
 }

@@ -8,18 +8,20 @@
 import SwiftUI
 import PencilKit
 
-// MARK:- DrawingView
+// MARK: - DrawingView
 struct DrawingView: View {
 
-  @EnvironmentObject var diaryViewModel: DiaryViewModel
+  @State private var isShowAddTextInCanvasView = false
+  @State private var isShowImgPicker = false
+  @Binding var isShowDrawingView: Bool
   
-  
-  //  @State var isShowAddTextView = false
+  @ObservedObject var diaryForm: DiaryForm
+  @StateObject var drawingViewModel = DrawingViewModel()
   
   // [textBox]에서 맞는 index 가져오기
   // ForEach에서 사용
   func getIndex(textBox: TextBox) -> Int {
-    let index = diaryViewModel.textBoxes.firstIndex { (box) -> Bool in
+    let index = drawingViewModel.textBoxes.firstIndex { (box) -> Bool in
       return box.id == textBox.id
     } ?? 0
     return index
@@ -32,7 +34,7 @@ struct DrawingView: View {
       let size = geo.frame(in: .global).size
       
       DispatchQueue.main.async {
-        diaryViewModel.rect = geo.frame(in: .global)
+        drawingViewModel.rect = geo.frame(in: .global)
       }
       
       return AnyView (
@@ -41,15 +43,15 @@ struct DrawingView: View {
           
           VStack {
             // CustomNavBar
-            DrawingViewCustomNavBar()
-              .opacity(diaryViewModel.isShowAddTextInCanvasView ? 0 : 1)
+            DrawingViewCustomNavBar(contents: $diaryForm.contents, isShowDrawingView: $isShowDrawingView)
+              .opacity(isShowAddTextInCanvasView ? 0 : 1)
             
             Spacer()
             
             // DrawingPanel
             ZStack {
-              // Canvas Background Image
-              if let image = UIImage(data: diaryViewModel.imageData) {
+              // Background Image
+              if let image = UIImage(data: drawingViewModel.imageData) {
                 Image(uiImage: image)
                   .resizable()
                   .frame(width: size.width-100, height: size.width-100)
@@ -61,11 +63,11 @@ struct DrawingView: View {
               }
               
               // Canvas
-              CanvasView(rect: size, canvas: $diaryViewModel.canvas)
+              CanvasView(rect: size, canvas: $drawingViewModel.canvas)
                 .frame(width: size.width-100, height: size.width-100)
               
-              // Text
-              ForEach(diaryViewModel.textBoxes) { box in
+              // TextBox
+              ForEach(drawingViewModel.textBoxes) { box in
                 Text(box.text)
                   .offset(box.currentPosition)
                   .foregroundColor(box.textColor)
@@ -77,14 +79,14 @@ struct DrawingView: View {
                         let index = getIndex(textBox: box)
                         let last = box.lastPosition
                         let current = CGSize(width: value.translation.width + last.width, height: value.translation.height + last.height)
-                        diaryViewModel.textBoxes[index].currentPosition = current
+                        drawingViewModel.textBoxes[index].currentPosition = current
                       })
                       .onEnded({ value in
                         let index = getIndex(textBox: box)
                         let last = box.lastPosition
                         let current = CGSize(width: value.translation.width + last.width, height: value.translation.height + last.height)
-                        diaryViewModel.textBoxes[index].currentPosition = current
-                        diaryViewModel.textBoxes[index].lastPosition = current
+                        drawingViewModel.textBoxes[index].currentPosition = current
+                        drawingViewModel.textBoxes[index].lastPosition = current
                       })
                   )
               }
@@ -92,46 +94,16 @@ struct DrawingView: View {
             
             Spacer()
             
-            DrawingViewCustomToolBar()
-              .opacity(diaryViewModel.isShowAddTextInCanvasView ? 0 : 1)
+            DrawingViewCustomToolBar(isShowImgPicker: $isShowImgPicker, isShowAddTextInCanvasView: $isShowAddTextInCanvasView, drawingViewModel: drawingViewModel)
+              .opacity(isShowAddTextInCanvasView ? 0 : 1)
           }
         } // ZStack
-//        .toolbar {
-//          ToolbarItemGroup(placement: ToolbarItemPlacement.bottomBar) {
-//            Button {
-//              diaryViewModel.isShowImgPicker.toggle()
-//            } label: {
-//              Image(systemName: "photo")
-//                .modifier(ButtonImageDesign())
-//            }
-//
-//            Spacer()
-//
-//            Button {
-//              diaryViewModel.isShowAddTextInCanvasView.toggle()
-//            } label: {
-//              Image(systemName: "textformat.abc")
-//                .modifier(ButtonImageDesign())
-//            }
-//
-//            Spacer()
-//
-//            Button {
-//              print(#fileID, #function, #line)
-//            } label: {
-//              Image(systemName: "pencil.tip.crop.circle")
-//                .modifier(ButtonImageDesign())
-//            }
-//          }
-//
-//        }
-        .sheet(isPresented: $diaryViewModel.isShowImgPicker) {
-          ImagePickerView(isShowPicker: $diaryViewModel.isShowImgPicker, imgData: $diaryViewModel.imageData)
+          .sheet(isPresented: $isShowImgPicker) {
+            ImagePickerView(isShowPicker: $isShowImgPicker, imgData: $drawingViewModel.imageData)
         }
-        .overlay(diaryViewModel.isShowAddTextInCanvasView ?
-                  AddTextInCanvasView() : nil
+        .overlay(isShowAddTextInCanvasView ?
+                 AddTextInCanvasView(isShowAddTextInCanvasView: $isShowAddTextInCanvasView, drawingViewModel: drawingViewModel) : nil
         )
-        
       )// AnyView
     }// Geo
   }// body
@@ -181,12 +153,12 @@ struct DrawingView: View {
 
 
 
-struct DrawingView_Previews: PreviewProvider {
-
-  static var previews: some View {
-    Group {
-      DrawingView()
-        .environmentObject(DiaryViewModel())
-    }
-  }
-}
+//struct DrawingView_Previews: PreviewProvider {
+//
+//  static var previews: some View {
+//    Group {
+//      DrawingView()
+//        .environmentObject(DiaryViewModel())
+//    }
+//  }
+//}

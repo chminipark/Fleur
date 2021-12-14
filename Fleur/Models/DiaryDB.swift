@@ -11,7 +11,8 @@ import SwiftUI
 
 class DiaryDB: Object, ObjectKeyIdentifiable {
   @Persisted(primaryKey: true) var id: ObjectId
-  @Persisted var date: Date = Date()
+//  @Persisted var date: Date = Date()
+  @Persisted var date: String = DateFormatter.customFormatter.string(from: Date())
   @Persisted var contents = RealmSwift.List<_DiaryContent>()
 }
 

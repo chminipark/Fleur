@@ -48,7 +48,8 @@ struct Diary: Identifiable {
 extension Diary {
   init(diaryDB: DiaryDB) {
     self.id = diaryDB.id
-    self.date = DateFormatter.customFormatter.string(from: diaryDB.date)
+//    self.date = DateFormatter.customFormatter.string(from: diaryDB.date)
+    self.date = diaryDB.date
     self.contents = Array(diaryDB.contents)
   }
 }

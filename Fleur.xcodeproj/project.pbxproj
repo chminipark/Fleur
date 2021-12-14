@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD0016F127642F8D0052DD65 /* DiaryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0016F027642F8D0052DD65 /* DiaryForm.swift */; };
 		BD03EDBE26C4EE330067249D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD03EDBD26C4EE330067249D /* RegisterView.swift */; };
 		BD1379A327584720003EE7B5 /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1379A227584720003EE7B5 /* FeedRowView.swift */; };
 		BD1379A727585E10003EE7B5 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1379A627585E10003EE7B5 /* Diary.swift */; };
 		BD1379AA2758620A003EE7B5 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1379A92758620A003EE7B5 /* DateFormatter.swift */; };
 		BD19C26C26C2AA5300B094B9 /* FleurApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26B26C2AA5300B094B9 /* FleurApp.swift */; };
-		BD19C26E26C2AA5300B094B9 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26D26C2AA5300B094B9 /* StartView.swift */; };
+		BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C26D26C2AA5300B094B9 /* ContentView.swift */; };
 		BD19C27026C2AA5600B094B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C26F26C2AA5600B094B9 /* Assets.xcassets */; };
 		BD19C27326C2AA5600B094B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */; };
 		BD19C28426C2ADCB00B094B9 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19C28326C2ADCB00B094B9 /* IntroView.swift */; };
@@ -61,13 +62,14 @@
 		1EF24DB91A5D928F487C8C16 /* Pods-Fleur.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleur.debug.xcconfig"; path = "Target Support Files/Pods-Fleur/Pods-Fleur.debug.xcconfig"; sourceTree = "<group>"; };
 		2D57AC36DB3FAFAA10B6FFA8 /* Pods-Fleur.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleur.release.xcconfig"; path = "Target Support Files/Pods-Fleur/Pods-Fleur.release.xcconfig"; sourceTree = "<group>"; };
 		2E5910653813B74ED8A53743 /* Pods_Fleur.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fleur.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0016F027642F8D0052DD65 /* DiaryForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryForm.swift; sourceTree = "<group>"; };
 		BD03EDBD26C4EE330067249D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		BD1379A227584720003EE7B5 /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
 		BD1379A627585E10003EE7B5 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		BD1379A92758620A003EE7B5 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		BD19C26826C2AA5300B094B9 /* Fleur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD19C26B26C2AA5300B094B9 /* FleurApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleurApp.swift; sourceTree = "<group>"; };
-		BD19C26D26C2AA5300B094B9 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		BD19C26D26C2AA5300B094B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BD19C26F26C2AA5600B094B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD19C27226C2AA5600B094B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BD19C27426C2AA5600B094B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,8 +208,8 @@
 		BD1AC1922700A3F9006CBAC5 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				BD6332CA271307C2005AAB1D /* DrawingView */,
 				BD5D711A271177DD0002CD28 /* DiaryView */,
+				BD6332CA271307C2005AAB1D /* DrawingView */,
 				BD1AC19027007968006CBAC5 /* MemoView.swift */,
 			);
 			path = Diary;
@@ -244,8 +246,8 @@
 		BD5D711A271177DD0002CD28 /* DiaryView */ = {
 			isa = PBXGroup;
 			children = (
-				BD4B38F92748ED1400F62CF7 /* DiaryRowView */,
 				BDEA946126CBF36500DB43FB /* DiaryView.swift */,
+				BD4B38F92748ED1400F62CF7 /* DiaryRowView */,
 				BD5D711B2711781D0002CD28 /* DiaryViewCustomNavBar.swift */,
 				BD5D7118271177260002CD28 /* ExpandableButtonPanel.swift */,
 			);
@@ -256,8 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				BD5E8F3F26FB491F008C94FA /* DrawingView.swift */,
-				BD6332CB27130825005AAB1D /* DrawingViewCustomToolBar.swift */,
 				BD6332CD27130856005AAB1D /* DrawingViewCustomNavBar.swift */,
+				BD6332CB27130825005AAB1D /* DrawingViewCustomToolBar.swift */,
 				BD5E8F3B26FB4422008C94FA /* ImagePickerView.swift */,
 				BD460E9427130B760048724B /* AddTextInCanvasView.swift */,
 				BD460E9627130BB30048724B /* CanvasView.swift */,
@@ -301,7 +303,7 @@
 				BD1AC1922700A3F9006CBAC5 /* Diary */,
 				BD19C27A26C2AC0D00B094B9 /* Intro */,
 				BDE03CFA271C54CC00142326 /* Login */,
-				BD19C26D26C2AA5300B094B9 /* StartView.swift */,
+				BD19C26D26C2AA5300B094B9 /* ContentView.swift */,
 				BDEA946326CC019D00DB43FB /* HashTagView.swift */,
 			);
 			path = Views;
@@ -327,6 +329,7 @@
 				BD6FD9C127228335008D0160 /* Card.swift */,
 				BD8F0DD42744E73500B2588A /* DiaryDB.swift */,
 				BD1379A627585E10003EE7B5 /* Diary.swift */,
+				BD0016F027642F8D0052DD65 /* DiaryForm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,10 +495,11 @@
 				BDEA946B26CC05DA00DB43FB /* AppConstants.swift in Sources */,
 				BD1AC1B52701A20D006CBAC5 /* DiaryData.swift in Sources */,
 				BD1AC19127007968006CBAC5 /* MemoView.swift in Sources */,
+				BD0016F127642F8D0052DD65 /* DiaryForm.swift in Sources */,
 				BD4B38FD2748EE1400F62CF7 /* DiaryRowTextView.swift in Sources */,
 				BD8F0DD52744E73500B2588A /* DiaryDB.swift in Sources */,
 				BD6BFA13271EBC1C00FC0247 /* FeedViewModel.swift in Sources */,
-				BD19C26E26C2AA5300B094B9 /* StartView.swift in Sources */,
+				BD19C26E26C2AA5300B094B9 /* ContentView.swift in Sources */,
 				BD6FD9B8272257AA008D0160 /* layout1.swift in Sources */,
 				BD1F9E8827576CD600EAC890 /* DiaryDBManager.swift in Sources */,
 				BD6BFA11271EA8B200FC0247 /* FeedView.swift in Sources */,

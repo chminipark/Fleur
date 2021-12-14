@@ -7,26 +7,43 @@
 
 import SwiftUI
 import PencilKit
+import RealmSwift
 
 class DiaryViewModel: ObservableObject {
   // MARK: - DiaryView
-  @Published var contents: [DiaryContent] = []
-  @Published var isEditMode = false
+//  @Published var contents: [DiaryContent] = []
+//  @Published var isEditMode = false
   
-  func addContentText() {
-//    contents.append(DiaryContent(text: nil, photo: UIImage(named: "1")))
-    contents.append(DiaryContent(text: "", photo: nil))
-    
-  }
-  
-//  func addContentImage() {
-//    contents.append(DiaryContent(text: "", photo: nil))
+//  func saveInDB(id: UInt64?, date: String, contents: [_DiaryContent]) {
+//
+////    objectWillChange.send()
+////    DiaryDBManager.ObjectWillChangePublisher().send()
+//    let db = DiaryDBManager()
+//    db.objectWillChange.send()
+//
+//    do {
+//      // save 하는 요부분 효율적으로 다시 짜기...
+//      if !contents.isEmpty {
+//        let realm = try Realm()
+//        let diaryDB = DiaryDB()
+//        diaryDB.date = date
+//        diaryDB.contents.removeAll()
+//        contents.forEach { diaryDB.contents.append($0) }
+//        try realm.write {
+//          realm.add(diaryDB)
+//        }
+//      }
+//
+//    } catch let error {
+//      print(error.localizedDescription)
+//    }
 //  }
+  
   
   // MARK: - DrawingView
   
   @Published var canvas = PKCanvasView()
-  @Published var isShowDrawingView = false
+//  @Published var isShowDrawingView = false
   @Published var rect: CGRect = .zero
   
   func saveImage() {
@@ -62,15 +79,15 @@ class DiaryViewModel: ObservableObject {
     // ending render
     UIGraphicsEndImageContext()
     
-    if let image = generatedImage {
-      contents.append(DiaryContent(text: nil, photo: image))
-    }
+//    if let image = generatedImage {
+//      contents.append(DiaryContent(text: nil, photo: image))
+//    }
     
     
   }
   
   // MARK: - ImagePickerView
-  @Published var isShowImgPicker: Bool = false
+//  @Published var isShowImgPicker: Bool = false
   @Published var imageData: Data = Data(count: 0)
   
   func cancelImageEditing() {
@@ -80,7 +97,7 @@ class DiaryViewModel: ObservableObject {
   
   // MARK: - AddTextInCanvasView
   @Published var textBoxes: [TextBox] = []
-  @Published var isShowAddTextInCanvasView: Bool = false
+//  @Published var isShowAddTextInCanvasView: Bool = false
   
   func addTextInCanvas(text: String) {
     textBoxes.append(TextBox(text: text))

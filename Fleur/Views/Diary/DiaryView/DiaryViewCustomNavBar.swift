@@ -9,10 +9,10 @@ import SwiftUI
 
 // MARK: - DiaryViewCustomNavBar
 struct DiaryViewCustomNavBar: View {
-
-//  @EnvironmentObject var diaryViewModel: DiaryViewModel
-
-  let date: String
+  
+  @EnvironmentObject var dbManager: DiaryDBManager
+//  @StateObject var diaryViewModel = DiaryViewModel()
+  @ObservedObject var diaryForm: DiaryForm
   
   // Custom navigationBarBackButton
   @Environment(\.presentationMode) var presentationMode
@@ -29,12 +29,14 @@ struct DiaryViewCustomNavBar: View {
 
       Spacer()
       
-      Text(date)
+      Text(diaryForm.date)
       
       Spacer()
 
       Button(action: {
-        print(#fileID, #function, #line)
+        dbManager.saveInDB(id: diaryForm.id, date: diaryForm.date, contents: diaryForm.contents)
+//        diaryViewModel.saveInDB(id: diaryForm.id, date: diaryForm.date, contents: diaryForm.contents)
+        presentationMode.wrappedValue.dismiss()
       }, label: {
         Image(systemName: "square.and.arrow.down")
           .modifier(ButtonImageDesign(color: .black))

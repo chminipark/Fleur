@@ -7,36 +7,32 @@
 
 import SwiftUI
 import PencilKit
-//
-//class DrawingViewModel: ObservableObject {
-//  // MARK: ImagePickerView
-//  @Published var isShowImgPicker: Bool = false
-//  @Published var imageData: Data = Data(count: 0)
-//  
-//  func cancelImageEditing() {
-//    imageData = Data(count: 0)
-////    canvas = PKCanvasView()
-//  }
-//  
-//  // MARK: AddTextInCanvasView
-//  @Published var textBoxes: [TextBox] = []
-//  @Published var isShowAddTextView: Bool = false
-//  
-//  func addTextInCanvas(text: String) {
-//    textBoxes.append(TextBox(text: text))
-//  }
-//  
-//  
-////  @Published var canvas = PKCanvasView()
-////
-////  @Published var toolPicker = PKToolPicker()
-////
-////  @Published var savedImage = UIImage()
-//  
-////  @Published var fullString = NSMutableAttributedString()
-//  
-//  
-//  func saveImage() {
-//
-//  }
-//}
+
+class DrawingViewModel: ObservableObject {
+  @Published var rect: CGRect = .zero
+  @Published var imageData: Data = Data(count: 0)
+  @Published var canvas = PKCanvasView()
+  @Published var textBoxes: [TextBox] = []
+}
+
+// MARK: - ImagePicker
+extension DrawingViewModel {
+  func cancelImageEditing() {
+    imageData = Data(count: 0)
+//    canvas = PKCanvasView()
+  }
+}
+
+// MARK: - Canvas
+extension DrawingViewModel {
+  func saveCanvas() {
+    
+  }
+}
+
+// MARK: - TextBox
+extension DrawingViewModel {
+  func addTextInCanvas(text: String) {
+    textBoxes.append(TextBox(text: text))
+  }
+}

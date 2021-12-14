@@ -9,14 +9,17 @@ import SwiftUI
 
 struct AddTextInCanvasView: View {
   
-  @EnvironmentObject var diaryViewModel: DiaryViewModel
+  @Binding var isShowAddTextInCanvasView: Bool
+//  @EnvironmentObject var diaryViewModel: DiaryViewModel
+  @ObservedObject var drawingViewModel: DrawingViewModel
   @State var text: String = ""
   
   var body: some View {
     VStack {
       HStack {
         Button {
-          diaryViewModel.isShowAddTextInCanvasView.toggle()
+          isShowAddTextInCanvasView.toggle()
+          self.text = ""
         } label: {
           Image(systemName: "chevron.backward")
             .modifier(ButtonImageDesign(color: .honeydew))
@@ -25,8 +28,10 @@ struct AddTextInCanvasView: View {
         Spacer()
         
         Button {
-          diaryViewModel.addTextInCanvas(text: text)
-          diaryViewModel.isShowAddTextInCanvasView.toggle()
+//          diaryViewModel.addTextInCanvas(text: text)
+//          diaryViewModel.isShowAddTextInCanvasView.toggle()
+          drawingViewModel.addTextInCanvas(text: text)
+          isShowAddTextInCanvasView.toggle()
         } label: {
           Image(systemName: "square.and.arrow.down")
             .modifier(ButtonImageDesign(color: .honeydew))
@@ -56,8 +61,8 @@ struct AddTextInCanvasView: View {
 }
 
 
-struct AddTextInCanvasView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTextInCanvasView()
-    }
-}
+//struct AddTextInCanvasView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddTextInCanvasView()
+//    }
+//}

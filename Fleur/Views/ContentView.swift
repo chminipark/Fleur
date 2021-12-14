@@ -1,5 +1,5 @@
 //
-//  StartView.swift
+//  ContentView.swift
 //  Fleur
 //
 //  Created by minii on 2021/08/10.
@@ -7,19 +7,13 @@
 
 import SwiftUI
 
-struct StartView: View {
-  
-//  @StateObject var feedViewModel = FeedViewModel()
+struct ContentView: View {
   
   @EnvironmentObject var diaryDBManager: DiaryDBManager
   
   var body: some View {
     
-//    FeedView(dataDiary: feedViewModel.dataDiary)
-//    FeedView(dataDiary: feedViewModel.dataDiary)
     FeedView(dataDiary: diaryDBManager.dataDiary)
-//    FeedView(dataDiary: [])
-    
     
 //    ZStack{
 //      if fbAuth.signedIn {
@@ -33,12 +27,11 @@ struct StartView: View {
 //      fbAuth.signedIn = fbAuth.isSignedIn
 //    }
     
-    
   }
 }
 
 struct StartView_Previews: PreviewProvider {
   static var previews: some View {
-    StartView()
+    ContentView()
   }
 }

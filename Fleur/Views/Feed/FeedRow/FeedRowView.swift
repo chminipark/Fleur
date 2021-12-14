@@ -20,7 +20,6 @@ struct FeedRowView: View {
       Text(date)
       
       VStack(spacing: spacing) {
-        
         ForEach(compoLayoutData.indices, id:\.self) { idx in
           if idx % 3 == 0 {
             layout1(layoutData: compoLayoutData[idx])
@@ -34,18 +33,17 @@ struct FeedRowView: View {
         }
       }
       
+      // Spacer..
       Rectangle()
         .foregroundColor(.clear)
         .frame(height: 50)
       
-    }
-    
-  }
+    } // VStack
+  } // body
 }
 
 struct FeedRowView_Previews: PreviewProvider {
   static var previews: some View {
     FeedRowView(date: "2021.12.02.", compoLayoutData: DiaryMock.compoLayoutData())
-//      .background(Color.bgColor)
   }
 }

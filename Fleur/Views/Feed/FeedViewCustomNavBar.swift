@@ -16,7 +16,7 @@ struct FeedViewCustomNavBar: View {
     HStack {
 
       Button(action: {
-        print("#file: \(#file), #function: \(#function), #line: \(#line)")
+        print(#fileID, #function, #line)
       }, label: {
         Image(systemName: "line.horizontal.3.circle")
           .modifier(ButtonImageDesign(color: .black))
@@ -25,21 +25,20 @@ struct FeedViewCustomNavBar: View {
       Spacer()
       
       Button(action: {
-        print("#file: \(#file), #function: \(#function), #line: \(#line)")
+        print(#fileID, #function, #line)
       }, label: {
         Image(systemName: "magnifyingglass")
           .modifier(ButtonImageDesign(color: .black))
       })
       
       NavigationLink {
-//        DiaryView(contentList: Array(DiaryMock.diary1.contents))
-        DiaryView(diaryData: Diary.init(diaryDB: DiaryDB()))
+        DiaryView(diaryForm: DiaryForm())
       } label: {
         Image(systemName: "square.and.pencil")
           .modifier(ButtonImageDesign(color: .black))
       }
 
-    }
+    } // HStack
     .padding()
     .frame(height: 45)
   }

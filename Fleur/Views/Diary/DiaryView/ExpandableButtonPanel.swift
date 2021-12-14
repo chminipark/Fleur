@@ -16,7 +16,7 @@ struct ExpandableButtonPanel: View {
   private let size: CGFloat = 40
 //  private let border: CGFloat = 5
   
-  @State var isExpanded = false
+  @State private var isExpanded = false
   
   var body: some View {
     ZStack {
